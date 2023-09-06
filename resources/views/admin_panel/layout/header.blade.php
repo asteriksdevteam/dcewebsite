@@ -67,8 +67,14 @@
                 </li>
                 <li>
                     <a href="#home">
-                        <i class="simple-icon-menu"></i>
+                        <i class="simple-icon-screen-desktop"></i>
                         <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#services">
+                        <i class="simple-icon-globe"></i>
+                        <span>Services</span>
                     </a>
                 </li>
             </ul>
@@ -96,12 +102,12 @@
                                 <a href="{{ url('home_content') }}">
                                     <i class="simple-icon-energy"></i> <span class="d-inline-block">About Content One</span>
                                 </a>
-                            {{-- </li>
+                            </li>
                             <li>
-                                <a href="#">
+                                <a href="{{ url('home_our_service') }}">
                                     <i class="simple-icon-tag"></i> <span class="d-inline-block">Our Services</span>
                                 </a>
-                            </li> --}}
+                            </li>
                             <li>
                                 <a href="{{ url('home_content_second') }}">
                                     <i class="simple-icon-tag"></i> <span class="d-inline-block">About Content Two</span>
@@ -142,6 +148,35 @@
                                     <i class="simple-icon-user-unfollow"></i> <span class="d-inline-block">Last Banner</span>
                                 </a>
                             </li> --}}
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-unstyled" data-link="services" id="services">
+                <li>
+                    <a href="#"><i class="simple-icon-arrow-down"></i> <span class="d-inline-block">All Sections</span> </a>
+                    <div id="collapseAuthorization" class="collapse show">
+                        <ul class="list-unstyled inner-level-menu">
+                            <li>
+                                <a href="{{ url('category') }}">
+                                    <i class="simple-icon-doc"></i> <span class="d-inline-block">Categories</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('sub_categories') }}">
+                                    <i class="simple-icon-docs"></i> <span class="d-inline-block">Sub Categories</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('sub_categories_item') }}">
+                                    <i class="simple-icon-book-open"></i> <span class="d-inline-block">Service Work</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('service_details') }}">
+                                    <i class="simple-icon-link"></i> <span class="d-inline-block">Service Details</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

@@ -14,6 +14,7 @@ use App\Models\LoyalCustomers;
 use App\Models\LoyalCustomersImages;
 use App\Models\HomeContentFourth;
 use App\Models\Testimonails;
+use App\Models\OurServicesHome;
 
 class HomeController extends Controller
 {
@@ -517,5 +518,32 @@ class HomeController extends Controller
         $Testimonails = Testimonails::where('id',$request->edit_id)->update($data);
 
         return redirect()->back()->with('success', 'Edit Successfully!');
+    }
+
+    public function home_our_service()
+    {
+        $OurServicesHome = OurServicesHome::get();
+        return view('admin_panel.home.our_services.list', compact('OurServicesHome'));
+    }
+
+    public function create_service_for_home_page(Request $request)
+    {
+        $data = array();
+
+        if($request->name)
+        {
+            $data['name'] = $request->name;
+        }
+        if($request->description)
+        {
+            $data['description'] = $request->description;
+        }
+        if($request->name)
+        {
+            $data['image'] = $this->singleImage($request->images,"home_services_images");
+        }
+        $OurServicesHome = OurServicesHome::create($data);
+
+        return redirect()->back()->with('success', 'Created Successfully!');
     }
 }

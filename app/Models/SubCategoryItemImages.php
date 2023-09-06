@@ -15,4 +15,5 @@ class SubCategoryItemImages extends Model
         "sub_categories_items_id",
         "images",
     ];
+    
 }

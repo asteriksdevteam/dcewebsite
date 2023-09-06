@@ -26,45 +26,26 @@ p
     left:0;
     width: 100%;
     z-index: 100;
-    padding: 20px 0;
-    transition: all .3s;
+    padding: 13px 0;
 }
-header.desktopmenu a.bluelogo
+.desktopmenu a.logo
 {
     display: block;
 }
-header.desktopmenu a.logo
+.desktopmenu a.whitelogo
 {
     display: none;
 }
-header.desktopmenu.scrolled ul li a
+.desktopmenu .toggle
 {
-    color:#000;
-}
-header.desktopmenu.scrolled
-{
-    background:#fff;
-    box-shadow: 0px 5px 14px 0px rgba(0, 0, 0, 0.13);
-    padding: 10px 0;
-}
-header.desktopmenu.scrolled a.bluelogo
-{
-    display: block;
-}
-header.desktopmenu.scrolled a.logo
-{
-    display:none;
-}
-header.desktopmenu.scrolled ul li:last-child a
-{
-    color:#fff;
+    display: none;
 }
 .desktopmenu nav
 {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 }
 .desktopmenu nav ul
 {
@@ -73,33 +54,148 @@ header.desktopmenu.scrolled ul li:last-child a
 .desktopmenu nav ul li
 {
     display: inline-block;
-    margin-right:35px;
-}
-.desktopmenu nav ul li svg
-{
-    margin-right:10px;
+    margin-right:20px;
 }
 .desktopmenu nav ul li a
 {
     text-decoration: none;
     color:#000;
+    font-weight: 500;
     text-transform: capitalize;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    padding: 10px 0;
+    padding: 32px 0;
 }
-.desktopmenu nav ul li:last-child
+.desktopmenu.scrolled
 {
-    margin-right:0px;
+    background:#fff;
+    transition: all .3s ease;
+    padding: 10px 0;
+    box-shadow: 0 0 10px rgb(0 0 0 / 10%);
 }
-.desktopmenu nav ul li:last-child a
+.estimate
+{
+    padding: 16px 24px !important;
+    border-radius: 55px;
+    background: #1C3879;
+    color:#fff !important;
+}
+.phone
+{
+    font-size: 18px;
+}
+.desktopmenu nav ul li:nth-child(6) a i
+{
+    margin-right: 10px;
+}
+.meg-menu
+{
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 85px;
+    width: 100%;
+    height: auto;
+    padding: 35px 0;
+    display: none;
+}
+.mega-list ul
+{
+    padding: 0px;
+}
+.mega-list ul li
+{
+    width: 100%;
+    margin-bottom:10px;
+}
+.mega-list ul li a
+{
+    padding: 0px !important;
+}
+.meg-menu .widget h6
+{
+    font-weight: 700;
+    text-transform: capitalize;
+    color:#1C3879;
+}
+.desktopmenu nav ul li.custom-dropdown:hover .meg-menu
+{
+    display: block;
+}
+.mega-firstlist
 {
     position: relative;
-    border-radius:100px;
-    background:#1C3879;
-    padding:20px 30px;
-    color:#fff;
-    font-weight: 400;
+    z-index: 1;
+}
+.mega-secondtlist
+{
+    position: relative;
+    z-index: 1;
+}
+.mega-thirdlist
+{
+    position: relative;
+    z-index: 1;
+}
+.mega-fourthlist
+{
+    position: relative;
+    z-index: 1;
+}
+.mega-firstlist:before
+{
+    content:'';
+    position: absolute;
+    bottom:0;
+    left:0;
+    height: 250px;
+    width: 250px;
+    background:url('../images/mega3.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.1;
+}
+.mega-secondtlist:before
+{
+    content:'';
+    position: absolute;
+    bottom:0;
+    left:0;
+    height: 250px;
+    width: 250px;
+    background:url('../images/mega1.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.1;
+}
+.mega-thirdlist:before
+{
+    content:'';
+    position: absolute;
+    bottom:0;
+    left:0;
+    height: 250px;
+    width: 250px;
+    background:url('../images/mega4.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.1;
+}
+.mega-fourthlist:before
+{
+    content:'';
+    position: absolute;
+    bottom:0;
+    left:0;
+    height: 250px;
+    width: 250px;
+    background:url('../images/mega2.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.1;
 }
 
 
@@ -472,6 +568,7 @@ textarea:focus
     border-radius: 10px;
     background: #1C3879;
     padding:50px 50px;
+    color: white;
 }
 .bluediv ul 
 {

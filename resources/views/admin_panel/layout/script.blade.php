@@ -173,6 +173,20 @@
             });
         //This script for home Content end
 
+        //This script for Service Detail Data Start
+            $(document).on('click','.edit_Services', function() {
+                var id = $(this).data("id");
+                var name = $(this).data("name");
+                var description = $(this).data("description");
+
+                console.log(id, name, description);
+
+                $("#id").val(id);
+                $("#service_name").val(name);
+                $("#ckEditorClassic").val(description);
+            });
+        //This script for Service Detail Data End
+
         //This script for Second Content Section Data start
 
             $(document).ready(function() {
@@ -572,5 +586,141 @@
                 $("#testimonialImage").attr("src", image);
             });
         //This script for Testimonails Section Data end
+
+        //This script for Services Category Section Data start
+            $(document).on('click','.edit_category', function() {
+                var id = $(this).data("id");
+                var category_name = $(this).data("category_name");
+                $("#edit_category_id").val(id);
+                $("#edit_category_name").val(category_name);
+            });
+        //This script for Services Category Section Data end
+
+        //This script for Services Sub Category Section Data start
+            $(document).on('click','.edit_sub_category', function() {
+                var id = $(this).data("id");
+                var category_name = $(this).data("category_name");
+                var sub_category_name = $(this).data("sub_category_name");
+                console.log(id, category_name, sub_category_name);
+
+                $("#id").val(id);
+                $("#edit_sub_category_name").val(sub_category_name);
+                $("#edit_Category_name").val(category_name);
+
+            });
+        
+        //This script for Services Sub Category Section Data end
+
+        //This script for Services Sub Category items Section Data start
+
+            $(document).ready(function() {
+                $("#picture").change(function() {
+                    var $imagePreview = $("#imagePreview");
+
+                    $imagePreview.empty();
+
+                    for (var i = 0; i < this.files.length; i++) {
+                        var file = this.files[i];
+
+                        if (file.type.match('image.*')) {
+                            var reader = new FileReader();
+
+                            reader.onload = function(e) {
+                                var imageElement = $("<img width='50%'>").attr("src", e.target.result);
+
+                                $imagePreview.append(imageElement);
+                            }
+                            reader.readAsDataURL(file);
+                        }
+                    }
+                });
+            });
+
+            $(document).on('click','.edit_sub_category_item', function() {
+                var id = $(this).data("id");
+                var sub_category_id = $(this).data("sub_category_id");
+                var item_name = $(this).data("item_name");
+                console.log(id, sub_category_id, item_name);
+
+                $("#id").val(id);
+                $("#edit_item_name").val(item_name);
+                $("#edit_sub_Category_name").val(sub_category_id);
+
+                $.ajaxSetup({
+                    headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    }
+                });
+                
+                $.ajax({
+                    url: "{{ url('get_images_on_edit_work') }}",
+                    type: 'POST',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        id: id,
+                    },
+                    success: function(result){
+                        $('.append').empty();
+                        $('.append').append(result);
+                        console.log(result);
+                    }
+                });
+
+            });
+
+        //This script for Services Sub Category items Section Data end
+
+        //This script for Service Detail Data Start
+            var counter = 2;
+            $(document).on('click','.add_more', function() {
+                var newFields = '<tr>'+
+                                    '<th scope="row">'+counter+'</th>'+
+                                    '<input type="hidden" class="row_number" name="row_number" id="row_number" value="'+counter+'">'+
+                                    '<td>'+
+                                        '<input type="text" name="process_heading[]" id="process_heading[]" class="form-control" required>'+
+                                        '@error("process_heading")'+
+                                        '<div class="alert alert-danger">{{ $message }}</div>'+
+                                        '@enderror '+
+                                    '</td>'+
+                                    '<td>'+
+                                        '<textarea name="process_content[]" id="process_content[]" class="form-control" rows="5" required></textarea>'+
+                                        '@error("process_content")'+
+                                        '<div class="alert alert-danger">{{ $message }}</div>'+
+                                        '@enderror '+
+                                    '</td>'+
+                                    '<td><a href="javascript:void(0);" class="btn btn-danger btn-sm remove" data-id="'+counter+'">Remove</a></td>'+
+                                '</tr>';
+
+                $(".append").append(newFields);
+                counter++;
+            });
+
+            $(document).on('click','.remove', function() {
+                $(this).closest('tr').remove();
+            });
+
+            $(document).ready(function() {
+                $('#banner_image_service_detail').on('change', function(event) {
+                    var selectedImage = event.target.files[0];
+
+                    if (selectedImage) 
+                    {
+                        var reader = new FileReader();
+
+                        reader.onload = function(e) {
+                            $('#banner_image_service_detail_display').html('<img src="' + e.target.result + '">');
+                        };
+
+                        reader.readAsDataURL(selectedImage);
+                    } 
+                    else 
+                    {
+                        $('#banner_image_service_detail_display').empty();
+                    }
+                });
+            });
+
+        //This script for Service Detail Data end
+
     });
 </script>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\ServicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('home_content_third',[HomeController::class,'home_content_third'])->name('home_content_third');
     Route::post('update_home_content_third',[HomeController::class,'update_home_content_third'])->name('update_home_content_third');
 
+    //Home Our Services
+    Route::get('home_our_service',[HomeController::class,'home_our_service'])->name('home_our_service');
+    Route::post('create_service_for_home_page',[HomeController::class,'create_service_for_home_page'])->name('create_service_for_home_page');
+
     //Home loyal customers
     Route::get('loyal_customers',[HomeController::class,'loyal_customers'])->name('loyal_customers');
     Route::post('update_loyal_customers',[HomeController::class,'update_loyal_customers'])->name('update_loyal_customers');
@@ -56,7 +61,30 @@ Route::middleware(['auth'])->group(function () {
     Route::get('delete_testimonials/{id}',[HomeController::class,'delete_testimonials'])->name('delete_testimonials');
     Route::post('update_testimonails',[HomeController::class,'update_testimonails'])->name('update_testimonails');
 
+    //Services Categories Route
+    Route::get('category',[ServicesController::class,'category'])->name('category');
+    Route::post('create_category',[ServicesController::class,'create_category'])->name('create_category');
+    Route::post('edit_category',[ServicesController::class,'edit_category'])->name('edit_category');
+    Route::get('delete_category/{id}',[ServicesController::class,'delete_category'])->name('delete_category');
 
+    //Services Sub Categories Route
+    Route::get('sub_categories',[ServicesController::class,'sub_categories'])->name('sub_categories');
+    Route::post('create_sub_category',[ServicesController::class,'create_sub_category'])->name('create_sub_category');
+    Route::post('edit_sub_category',[ServicesController::class,'edit_sub_category'])->name('edit_sub_category');
+    Route::get('delete_sub_category/{id}',[ServicesController::class,'delete_sub_category'])->name('delete_sub_category');
+
+    //Services Sub Categories item Route
+    Route::get('sub_categories_item',[ServicesController::class,'sub_categories_item'])->name('sub_categories_item');
+    Route::post('create_sub_category_item',[ServicesController::class,'create_sub_category_item'])->name('create_sub_category_item');
+    Route::post('edit_sub_category_work',[ServicesController::class,'edit_sub_category_work'])->name('edit_sub_category_work');
+    Route::get('delete_work_image/{id}',[ServicesController::class,'delete_work_image'])->name('delete_work_image');
+    Route::post('get_images_on_edit_work',[ServicesController::class,'get_images_on_edit_work'])->name('edit_sub_category');
+    Route::get('delete_sub_category_item/{id}',[ServicesController::class,'delete_sub_category_item'])->name('delete_sub_category_item');
+
+    //Services Details
+    Route::get('service_details',[ServicesController::class,'service_details'])->name('service_details');
+    Route::get('add_service_detail',[ServicesController::class,'add_service_detail'])->name('add_service_detail');
+    Route::post('create_service_detail',[ServicesController::class,'create_service_detail'])->name('create_service_detail');
 });
 
 
@@ -65,6 +93,9 @@ Route::get('/',[FrontController::class,"index"])->name('index');
 Route::get('about_us',[FrontController::class,"about_us"])->name('about-us');
 
 Route::get('service',[FrontController::class,"service"])->name('service');
+Route::post('get_services_for_home',[FrontController::class,"get_services_for_home"])->name('get_services_for_home');
+Route::post('get_work_on_home',[FrontController::class,"get_work_on_home"])->name('get_work_on_home');
+Route::get('get_all_work_on_home',[FrontController::class,"get_all_work_on_home"])->name('get_all_work_on_home');
 
 Route::get('blog_and_news',[FrontController::class,"blog_and_news"])->name('blog_and_news');
 

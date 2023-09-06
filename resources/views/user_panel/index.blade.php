@@ -31,30 +31,30 @@
             <div class="col-xl-5 col-lg-6 col-md-6 col-xs-12">
                 <div class='form'>
                     <h4 class='subtitle2'>get in touch.</h4>
-                    <form action="{{ url('contact_us') }}" method="post">
+                    <form>
                         @csrf
                         <div class='row gx-3'>
                             <div class="col-lg-6" >
-                                <input type="text" placeholder='name*' name="name" class='form-control' required/>
+                                <input type="text" placeholder='name*' name="contact_name" id="contact_name" class='form-control' required/>
                             </div>
                             <div class="col-lg-6" >
-                                <input type="text" placeholder='email*' name="email" class='form-control' required/>
+                                <input type="text" placeholder='email*' name="contact_email" id="contact_email" class='form-control' required/>
                             </div>
                         </div>
                         <div class='row mt-3 gx-3'>
                             <div class="col-lg-6" >
-                                <input type="text" placeholder='phone*' name="phone" class='form-control' required/>
+                                <input type="text" placeholder='phone*' name="contact_phone" id="contact_phone" class='form-control' required/>
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" placeholder='subject*' name="subject" class='form-control' required/>
+                                <input type="text" placeholder='subject*' name="contact_subject" id="contact_subject" class='form-control' required/>
                             </div>
                         </div>
                         <div class='row mt-3 gx-3'>
                             <div class="col-lg-12">
-                                <textarea class='form-control' name="text" rows='10' placeholder='messages*' required></textarea> 
+                                <textarea class='form-control' name="contact_text" rows='10' id="contact_text" placeholder='messages*' required></textarea> 
                             </div>
                         </div>
-                        <button type='submit' class='submit'>submit</button>
+                        <button type='button' class='submit contact_us'>submit</button>
                     </form>
                 </div>
             </div>
@@ -125,45 +125,22 @@
                 <div class="row">
                     <div class="col-lg-3 col-xs-12 m20">
                         <ul class="nav flex-column ourservices2-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="CustomWebsiteDevelopment-tab" data-bs-toggle="tab" data-bs-target="#CustomWebsiteDevelopment" role="tab" aria-controls="CustomWebsiteDevelopment" aria-selected="true">Custom Website Development</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="eCommerceDevelopment-tab" data-bs-toggle="tab" data-bs-target="#eCommerceDevelopment" role="tab" aria-controls="eCommerceDevelopment" aria-selected="false">eCommerce Development</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="Branding-tab" data-bs-toggle="tab" data-bs-target="#Branding" role="tab" aria-controls="Branding" aria-selected="false">Branding</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="WebApps-tab" data-bs-toggle="tab" data-bs-target="#WebApps" role="tab" aria-controls="WebApps" aria-selected="false">Web Apps</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="MotionGraphics-tab" data-bs-toggle="tab" data-bs-target="#MotionGraphics" role="tab" aria-controls="MotionGraphics" aria-selected="false">Motion Graphics</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="ContentWriting-tab" data-bs-toggle="tab" data-bs-target="#ContentWriting" role="tab" aria-controls="ContentWriting" aria-selected="false">Content Writing</a>
-                            </li>
+                           
+                            @foreach($OurServicesHome as $item)
+                                <li class="nav-item OnClickToGetService">
+                                    <input type="hidden" class="getname" name="getname" id="getname" value="{{ $item->id }}">
+                                    <a class="nav-link" id="CustomWebsiteDevelopment-tab" data-bs-toggle="tab" data-bs-target="#CustomWebsiteDevelopment" role="tab" aria-controls="CustomWebsiteDevelopment" aria-selected="true">{{ $item->name }}</a>
+                                </li>
+                            @endforeach
+
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6 col-xs-12 mpad m20">
-                        <img id="tabImg" class="service2img" width="290" height="518" alt="">
+                        <img src="{{ url($OurServicesHomeFirst->image) }}" id="tabImg" class="service2img" width="290" height="518" alt="">
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-12">
-                        <div class="bluediv">
-                            <p id="tabDescription" class="para text-white"></p>
-                            <ul id="tabList" class="mt-5">
-                                <!-- List items will be populated dynamically -->
-                            </ul>
-                            <div class="d-flex align-items-center">
-                                <div class="left">
-                                    <div class="dlink">
-                                        <a href="#" class="discuss">Let’s Discuss</a>
-                                    </div>
-                                </div>
-                                <div class="right">
-                                    <img src="assets/images/arrowcircle2.png" alt="">
-                                </div>
-                            </div>
+                        <div class="bluediv" style="height:32em;">
+                            {!! $OurServicesHomeFirst->description !!}
                         </div>
                     </div>
                 </div>
@@ -278,27 +255,16 @@
             <div class="col-lg-8 col-md-6 my-auto">
                 <div class="custom-tabs nav nav-tabs" id="myTab" role="tablist">
 
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active custom-title" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="all-tab-pane" aria-selected="true">all</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link custom-title" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Online Shopping</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link custom-title" id="logodesign-tab" data-bs-toggle="tab" data-bs-target="#logodesign-tab-pane" type="button" role="tab" aria-controls="logodesign-tab-pane" aria-selected="false">GYM</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link custom-title" id="article-tab" data-bs-toggle="tab" data-bs-target="#article-tab-pane" type="button" role="tab" aria-controls="article-tab-pane" aria-selected="false" >Tranding</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link custom-title" id="webapp-tab" data-bs-toggle="tab" data-bs-target="#webapp-tab-pane" type="button" role="tab" aria-controls="webapp-tab-pane" aria-selected="false" >Chemical Inds</button>
-                    </li>
-                    {{-- <li class="nav-item" role="presentation">
-                        <button class="nav-link custom-title" id="blogsite-tab" data-bs-toggle="tab" data-bs-target="#blogsite-tab-pane" type="button" role="tab" aria-controls="blogsite-tab-pane" aria-selected="false" >blog site</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link custom-title" id="videoanimation-tab" data-bs-toggle="tab" data-bs-target="#videoanimation-tab-pane" type="button" role="tab" aria-controls="videoanimation-tab-pane" aria-selected="false" >video animation</button>
-                    </li> --}}
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active custom-title all_work" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="all-tab-pane" aria-selected="true">all</button>
+                        </li>
+                    @foreach($SubCategoryItem as $item)
+                        <li class="nav-item service_name_li" role="presentation">
+                            <input type="hidden" class="service_name" value="{{$item->id}}" name="service_name" id="service_name">
+                            <button class="nav-link custom-title" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="all-tab-pane" aria-selected="true">{{ $item->item_name }}</button>
+                        </li>
+                    @endforeach
+
                 </div>
             </div>
         </div>
@@ -306,49 +272,14 @@
         <div class="row">
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6">
-                            <div class="window">
-                                <img src="{{url('user_assets/images/ourwork01.png')}}" style="width: 300px; height: 200px;" alt="">
+                    <div class="row workimages">
+                        @foreach($SubCategoryItemImages as $item)
+                            <div class="col-lg-3 col-md-6">
+                                <div class="window">
+                                    <img src="{{url( $item->images )}}" style="width: 300px; height: 200px;" alt="">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="window">
-                                <img src="{{url('user_assets/images/ourwork02.png')}}" style="width: 300px; height: 200px;" alt="">
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="window">
-                                <img src="{{url('user_assets/images/ourwork03.png')}}" style="width: 300px; height: 200px;" alt="">
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="window">
-                                <img src="{{url('user_assets/images/ourwork04.png')}}" style="width: 300px; height: 200px;" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-lg-3 col-md-6">
-                            <div class="window">
-                                <img src="{{url('user_assets/images/ourwork05.png')}}" style="width: 300px; height: 200px;" alt="">
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="window">
-                                <img src="{{url('user_assets/images/ourwork06.png')}}" style="width: 300px; height: 200px;" alt="">
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="window">
-                                <img src="{{url('user_assets/images/ourwork07.png')}}" style="width: 300px; height: 200px;" alt="">
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="window">
-                                <img src="{{url('user_assets/images/ourwork08.png')}}" style="width: 300px; height: 200px;" alt="">
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
