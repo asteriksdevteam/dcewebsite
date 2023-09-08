@@ -58,6 +58,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="mb-4">All Service Works</h5>
+                        <div style="display: flex; justify-content: end; margin:20px 44px 0 0">
+                            <a href="{{ url('service_details') }}" class="btn btn-primary cbtn"><i class="simple-icon-arrow-left"></i> <span class="d-inline-block"> Back</span></a>
+                        </div>
                         <form method="post" action="{{ url('create_service_detail') }}" enctype="multipart/form-data">
                             @csrf
 

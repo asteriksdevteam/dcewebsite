@@ -21,27 +21,27 @@
                         <h2 class='title'><span class='highlight'>Get in touch.</span></h2>
                         <form action="#" class='mt-4'>
                             <div class='row gx-3'>
-                                <div class='col-lg-6'>
-                                    <input type="text" placeholder='name*' class='form-control' required/>
+                                <div class="col-lg-6" >
+                                    <input type="text" placeholder='name*' name="contact_name" id="contact_name" class='form-control' required/>
                                 </div>
-                                <div class='col-lg-6'>
-                                    <input type="text" placeholder='email*' class='form-control' required/>
+                                <div class="col-lg-6" >
+                                    <input type="text" placeholder='email*' name="contact_email" id="contact_email" class='form-control' required/>
                                 </div>
                             </div>
                             <div class='row mt-3 gx-3'>
-                                <div class='col-lg-6'>
-                                    <input type="text" placeholder='phone*' class='form-control' required/>
+                                <div class="col-lg-6" >
+                                    <input type="text" placeholder='phone*' name="contact_phone" id="contact_phone" class='form-control' required/>
                                 </div>
-                                <div class='col-lg-6'>
-                                    <input type="text" placeholder='subject*' class='form-control' required/>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder='subject*' name="contact_subject" id="contact_subject" class='form-control' required/>
                                 </div>
                             </div>
-                            <div class='mt-3 gx-3'>
+                            <div class='row mt-3 gx-3'>
                                 <div class="col-lg-12">
-                                    <textarea class='form-control' rows={10} placeholder='messages*' required></textarea> 
+                                    <textarea class='form-control' name="contact_text" rows='5' id="contact_text" placeholder='messages*' required></textarea> 
                                 </div>
                             </div>
-                            <button type='submit' class='submit'>submit</button>
+                            <button type='button' class='submit contact_us'>submit</button>
                         </form>
                         <div class='arrow1'><img src="/assets/images/arrow1.png" alt="" /></div>
                         <div class='arrow2'><img src="/assets/images/arrow2.png" alt="" /></div>

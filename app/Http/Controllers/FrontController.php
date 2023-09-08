@@ -19,6 +19,14 @@ use App\Models\SubCategory;
 use App\Models\SubCategoryItem;
 use App\Models\SubCategoryItemImages;
 use App\Models\ContactUs;
+use App\Models\ServiceDetail;
+use App\Models\ServiceDetailProcess;
+use App\Models\AboutUsBanner;
+use App\Models\WhoWeAre;
+use App\Models\MissionVision;
+use App\Models\OurPhilosophy;
+
+
 // use Location;
 
 class FrontController extends Controller
@@ -39,14 +47,19 @@ class FrontController extends Controller
         $OurServicesHomeFirst = OurServicesHome::first();
         $SubCategoryItem = SubCategoryItem::with('SubCategoryItemImages')->get();
         $SubCategoryItemImages = SubCategoryItemImages::get();
-        // dd($SubCategoryItemImages);
-
+                
         return view('user_panel.index',compact('HomeBanner','SubCategoryItem','SubCategoryItemImages','OurServicesHomeFirst','OurServicesHome' , 'HomeBannerImages', 'HomeTechnologies', 'HomeContentOne', 'HomeContentSecond', 'HomeContentThird', 'LoyalCustomers','LoyalCustomersImages','HomeContentFourth','Testimonails'));
     }
 
     public function about_us()
     {
-        return view('user_panel.aboutus');
+        $AboutUsBanner = AboutUsBanner::first();
+        $WhoWeAre = WhoWeAre::first();
+        $MissionVision = MissionVision::first();
+        $LoyalCustomers = LoyalCustomers::first();
+        $LoyalCustomersImages = LoyalCustomersImages::get();
+        $OurPhilosophy = OurPhilosophy::first();
+        return view('user_panel.aboutus',compact('AboutUsBanner','OurPhilosophy','WhoWeAre','MissionVision','LoyalCustomers','LoyalCustomersImages'));
     }
 
     public function service()
@@ -146,5 +159,43 @@ class FrontController extends Controller
         $ContactUs = ContactUs::create($data);
 
         return response()->json(['success'=> 'Updated Successfully!']);
+    }
+
+    public function get_header_services()
+    {
+        $Category = Category::with('SubCategory')->get();
+        $html = "";
+        
+        foreach($Category as $item)
+        {
+            $html .= '<div class="col-md-3">';
+            $html .= '<div class="widget widgetfirst">';
+            $html .= '<h6>'.$item->category_name.'</h6>';
+            $html .= '</div>';
+            $html .= '<div class="mega-list mega-firstlist">';
+            $html .= '<ul>';
+            if ($item->SubCategory->count() > 0) {
+                foreach ($item->SubCategory as $subcategory) {
+                    $html .= '<li><a href="'. url('service_detail_for_user/'.$subcategory->id) .'">' . $subcategory->sub_category_name . '</a></li>';
+                }
+            } else {
+                $html .= '<li>No subcategories available.</li>';
+            }
+
+            $html .= '</ul>';
+            $html .= '</div>';
+            $html .= '</div>';
+        }
+        return response()->json($html);
+    }
+
+    public function service_detail_for_user($id)
+    {
+        $ServiceDetail = ServiceDetail::where('sub_category',$id)->first();
+
+        $ServiceDetailProcess = ServiceDetailProcess::where('service_detail_id',$ServiceDetail->id)->get();
+        // dd($ServiceDetail, $ServiceDetailProcess);
+
+        return view('user_panel.service', compact('ServiceDetail', 'ServiceDetailProcess'));
     }
 }

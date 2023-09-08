@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class='bannercontnet'>
-                    <h1><span class='highlight'>WE ARE USAs TOP RATED WEBSITE DESIGN COMPANY</span></h1>
-                    <p>Step into a world where creativity meets innovation, where we blend the limitless potential of imagination with the power of technology to elevate brands to new heights in this digital transformation era.</p>
+                    <h1><span class='highlight'>{{ $ServiceDetail->banner_heading }}</span></h1>
+                    <p>{{ $ServiceDetail->banner_content }}</p>
                 </div>
             </div>
         </div>
@@ -243,19 +243,12 @@
             <div class="col-lg-6 col-md-6 col-xs-12">
                 <div class='aboutcontent'>
                     <div class='about-content1'>
-                        <h6 class='smalltitle'>Fusce sed fames aliquam mi</h6>
-                        <h2 class='title'>Id viverra proin <br/> adipiscing et nisi ut</h2>
-                        <p class='para'>Lorem ipsum dolor sit amet consectetur. Massa sodales in sed leo convallis at. Enim sollicitudin ullamcorper sollicitudin tincidunt sed volutpat sapien lorem tempor. Id viverra proin adipiscing et nisi ut aliquam lobortis commodo. Vulputate eget interdum consequat fames libero. Nibh consectetur mauris justo justo. Fusce sed fames aliquam mi eleifend aliquam phasellus. Sit aliquet felis sed vivamus neque tortor vestibulum adipiscing ut.</p>
-                    </div>
-
-                    <div class='about-content2'>
-                        <h2 class='title'>Lorem ipsum dolor sit amet.</h2>
-                        <p class='para'>Lorem ipsum dolor sit amet consectetur. Massa sodales in sed leo convallis at. Enim sollicitudin ullamcorper sollicitudin tincidunt sed volutpat sapien lorem tempor. Id viverra proin adipiscing et nisi ut aliquam lobortis commodo. Vulputate eget interdum consequat fames libero.</p>
+                        {!! $ServiceDetail->about_content !!}
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-xs-12 my-auto">
-                <img  src='{{ url('user_assets/images/about.png')}}' class='img-fluid' alt='' />
+                <img  src='{{ url($ServiceDetail->banner_image_service_detail)}}' class='img-fluid' alt='' />
             </div>
         </div>
     </div>

@@ -2,9 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Admin-Panel of DCE</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{url('admin_assets/font/iconsmind-s/css/iconsminds.css')}}" />
     <link rel="stylesheet" href="{{url('admin_assets/font/simple-line-icons/css/simple-line-icons.css')}}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -30,6 +29,7 @@
     <link rel="stylesheet" href="{{url('admin_assets/css/vendor/select2.min.css')}}" />
     <link rel="stylesheet" href="{{url('admin_assets/css/vendor/select2-bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{url('admin_assets/css/vendor/bootstrap-datepicker3.min.css')}}" />
+
 </head>
 
 <body id="app-container" class="menu-default show-spinner">
@@ -65,6 +65,16 @@
     <script src="{{url('admin_assets/js/vendor/mousetrap.min.js')}}"></script>
     <script src="{{url('admin_assets/js/dore.script.js')}}"></script>
     <script src="{{url('admin_assets/js/scripts.js')}}"></script>
+    <script src="https://cdn.tiny.cloud/1/ejwiq0fa3s54yoz9v656kph21qpwow99t53n9745zkkbszq2/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#mytextarea',
+            statusbar: false,
+            plugin: 'a_tinymce_plugin',
+            a_plugin_option: true,
+            a_configuration_option: 400
+        });
+    </script>
 @include('admin_panel.layout.script')
 
 </body>

@@ -141,12 +141,12 @@ p
     position: relative;
     z-index: 1;
 }
-.mega-firstlist:before
+/* .mega-firstlist:before
 {
     content:'';
     position: absolute;
-    bottom:0;
-    left:0;
+    bottom: 0;
+    left: -45px;
     height: 250px;
     width: 250px;
     background:url('../images/mega3.svg');
@@ -196,7 +196,7 @@ p
     background-repeat: no-repeat;
     z-index: -1;
     opacity: 0.1;
-}
+} */
 
 
 /*homebanner*/

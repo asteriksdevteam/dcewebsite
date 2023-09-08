@@ -48,18 +48,68 @@ class ServicesController extends Controller
     }
 
     public function delete_category($id)
-    {    
-        $Category = Category::with('SubCategory')->where('id',$id)->first();
+    {
+        $Category = Category::with('SubCategory.ServiceDetail.ServiceDetailProcess')->where('id',$id)->first();
 
-        if($Category->SubCategory->isEmpty() === false)
+        $SubCategory = SubCategory::select('id')->where('category_id',$Category->id)->get();
+
+        $ServiceDetail = ServiceDetail::select('id')->whereIn('sub_category',$SubCategory)->get();
+
+        $ServiceDetailProcess = ServiceDetailProcess::whereIn('service_detail_id',$ServiceDetail)->get();
+
+        if($ServiceDetailProcess->isEmpty() === false)
         {
-            foreach($Category->SubCategory as $item)
+            foreach($ServiceDetailProcess as $item)
             {
-                $item->delete();
+                $item->delete(); 
+            }
+        }
+        
+        $ServiceDetailDelete = ServiceDetail::whereIn('sub_category',$SubCategory)->get();
+        
+        if($ServiceDetailDelete->isEmpty() === false)
+        {
+            foreach($ServiceDetailDelete as $item)
+            {
+                $item->delete(); 
             }
         }
 
-        $delete_category = $Category->delete();
+        $SubCategoryItem = SubCategoryItem::select('id')->whereIn('sub_category_id',$SubCategory)->get();
+
+        $SubCategoryItemImages = SubCategoryItemImages::whereIn('sub_categories_items_id',$SubCategoryItem)->get();
+
+        if($SubCategoryItemImages->isEmpty() === false)
+        {
+            foreach($SubCategoryItemImages as $item)
+            {
+                $item->delete(); 
+            }
+        }
+
+        $SubCategoryItem = SubCategoryItem::whereIn('sub_category_id',$SubCategory)->get();
+
+        if($SubCategoryItem->isEmpty() === false)
+        {
+            foreach($SubCategoryItem as $item)
+            {
+                $item->delete(); 
+            }
+        }
+
+        $SubCategoryDelete = SubCategory::where('category_id',$Category->id)->get();
+
+        if($SubCategoryDelete->isEmpty() === false)
+        {
+            foreach($SubCategoryDelete as $item)
+            {
+                $item->delete(); 
+            }
+        }
+
+        $Category = Category::where('id',$id)->first();
+
+        $Category->delete();
 
         return redirect()->back()->with('message', 'Category Deleted Successfully!');
     }
@@ -95,8 +145,56 @@ class ServicesController extends Controller
 
     public function delete_sub_category($id)
     {
+        $SubCategory = SubCategory::select('id')->where('id',$id)->first();
+
+        $ServiceDetail = ServiceDetail::select('id')->whereIn('sub_category',$SubCategory)->get();
+
+        $ServiceDetailProcess = ServiceDetailProcess::whereIn('service_detail_id',$ServiceDetail)->get();
+
+        if($ServiceDetailProcess->isEmpty() === false)
+        {
+            foreach($ServiceDetailProcess as $item)
+            {
+                $item->delete(); 
+            }
+        }
+        
+        $ServiceDetailDelete = ServiceDetail::whereIn('sub_category',$SubCategory)->get();
+        
+        if($ServiceDetailDelete->isEmpty() === false)
+        {
+            foreach($ServiceDetailDelete as $item)
+            {
+                $item->delete(); 
+            }
+        }
+
+        $SubCategoryItem = SubCategoryItem::select('id')->whereIn('sub_category_id',$SubCategory)->get();
+
+        $SubCategoryItemImages = SubCategoryItemImages::whereIn('sub_categories_items_id',$SubCategoryItem)->get();
+
+        if($SubCategoryItemImages->isEmpty() === false)
+        {
+            foreach($SubCategoryItemImages as $item)
+            {
+                $item->delete(); 
+            }
+        }
+
+        $SubCategoryItem = SubCategoryItem::whereIn('sub_category_id',$SubCategory)->get();
+
+        if($SubCategoryItem->isEmpty() === false)
+        {
+            foreach($SubCategoryItem as $item)
+            {
+                $item->delete(); 
+            }
+        }
+
         $SubCategory = SubCategory::where('id',$id)->first();
+
         $delete_SubCategory = $SubCategory->delete();
+        
         return redirect()->back()->with('message', 'Sub Category Deleted Successfully!');
     }
 
@@ -209,7 +307,10 @@ class ServicesController extends Controller
     public function service_details()
     {
         $ServiceDetail = ServiceDetail::with('SubCategory')->get();
-        return view("admin_panel.services.service_detail.list", compact('ServiceDetail'));
+        $ServiceDetailId = ServiceDetail::select('sub_category')->get();
+        $SubCategory = SubCategory::whereNotIn('id', $ServiceDetailId)->get();
+
+        return view("admin_panel.services.service_detail.list", compact('ServiceDetail','SubCategory'));
     }
 
     public function add_service_detail()
@@ -270,5 +371,92 @@ class ServicesController extends Controller
         }
 
         return redirect()->back()->with('success', 'Servies Details Create Successfully!');
+    }
+
+    public function edit_service_detail(Request $request)
+    {
+        $EditServiceDetail = ServiceDetail::with('SubCategory','ServiceDetailProcess')->where('id',$request->id)->first();
+        
+        $all_selected_sub_category = ServiceDetail::select('sub_category')->where('sub_category','!=',$EditServiceDetail->sub_category)->get();
+
+        $SubCategory = SubCategory::whereNotIn('id', $all_selected_sub_category)->get();
+
+        return view('admin_panel.services.service_detail.edit',compact('SubCategory','EditServiceDetail'));
+    }
+
+    public function update_service_details(Request $request)
+    {
+        $validatedData = $request->validate([
+            'sub_category' => 'required',
+            'banner_heading' => 'required',
+            'banner_content' => 'required',
+            'row_number' => 'required',
+            'process_heading' => 'required|array|min:1',
+            'process_content' => 'required|array|min:1',
+            'about_content' => 'required|string|min:25',
+        ]);
+
+        $ServiceDetail = array();
+
+        if($request->sub_category)
+        {
+            $ServiceDetail['sub_category'] = $request->sub_category; 
+        }
+        if($request->banner_heading)
+        {
+            $ServiceDetail['banner_heading'] = $request->banner_heading; 
+        }
+        if($request->banner_content)
+        {
+            $ServiceDetail['banner_content'] = $request->banner_content; 
+        }
+        if($request->about_content)
+        {
+            $ServiceDetail['about_content'] = $request->about_content; 
+        }
+        if($request->banner_image_service_detail)
+        {
+            $ServiceDetail['banner_image_service_detail'] = $this->singleImage($request->banner_image_service_detail, 'ServiceDetail'); 
+        }
+
+        $ServiceDetail = ServiceDetail::where('id',$request->id)->update($ServiceDetail);
+
+        $ServiceDetailProcess = ServiceDetailProcess::where('service_detail_id',$request->id)->get();
+
+        foreach($ServiceDetailProcess as $item)
+        {
+            $item->delete();
+        }
+
+        $process_heading = $request->process_heading;
+        $process_content = $request->process_content;
+
+        for($i = 0; $i < count($process_heading); $i++)
+        {
+            $ServiceDetailProcess = ServiceDetailProcess::create([
+                'service_detail_id' => $request->id,
+                'heading' => $process_heading[$i],
+                'content' => $process_content[$i],
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Servies Details Updated Successfully!');
+    }
+
+    public function delete_service_detail($id)
+    {        
+        $ServiceDetailProcess = ServiceDetailProcess::where('service_detail_id',$id)->get();
+
+        foreach($ServiceDetailProcess as $item)
+        {
+            $item->delete();
+        }
+
+        $ServiceDetail = ServiceDetail::where('id',$id)->first();
+
+        $ServiceDetail->delete();
+
+        return redirect()->back()->with('message', 'Servies Details Deleted Successfully!');
+        
     }
 }

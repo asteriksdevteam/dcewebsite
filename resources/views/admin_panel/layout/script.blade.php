@@ -720,7 +720,63 @@
                 });
             });
 
+            $(document).on('click','.edit_Services_details', function() {
+                var id = $(this).data("id");
+                $.ajaxSetup({
+                    headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    }
+                });
+                
+                $.ajax({
+                    url: "{{ url('edit_service_detail') }}",
+                    type: 'POST',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        id: id,
+                    },
+                    success: function(result){
+                        console.log(result.ServiceDetail);
+                    }
+                });
+            });
         //This script for Service Detail Data end
+
+        //This script for About Us Data Start
+            $(document).ready(function() {
+                $('#about_image_who_we_are').on('change', function(event) {
+                    var selectedImage = event.target.files[0];
+
+                    if (selectedImage) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        $('#who_we_are_Image').html('<img src="' + e.target.result + '">');
+                    };
+
+                    reader.readAsDataURL(selectedImage);
+                    } else {
+                    $('#who_we_are_Image').empty();
+                    }
+                });
+
+                $('#insert_philosophy_Image').on('change', function(event) {
+                    var selectedImage = event.target.files[0];
+
+                    if (selectedImage) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        $('#philosophy_Image').html('<img src="' + e.target.result + '">');
+                    };
+
+                    reader.readAsDataURL(selectedImage);
+                    } else {
+                    $('#philosophy_Image').empty();
+                    }
+                });
+            });
+        //This script for About Us Data End
 
     });
 </script>

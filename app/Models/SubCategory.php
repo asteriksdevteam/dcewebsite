@@ -26,5 +26,9 @@ class SubCategory extends Model
     {
         return $this->hasMany(SubCategoryItem::class, 'sub_category_id', 'id');
     }
+    public function ServiceDetail(): HasOne
+    {
+        return $this->HasOne(ServiceDetail::class,'sub_category','id');
+    }
 
 }

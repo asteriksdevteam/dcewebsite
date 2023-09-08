@@ -6,8 +6,8 @@
         <div class="row">
             <div class='col-lg-8'>
                 <div class='bannercontnet'>
-                    <h1><span class='highlight'>WE ARE USAs TOP RATED WEBSITE DESIGN COMPANY</span></h1>
-                    <p>Step into a world where creativity meets innovation, where we blend the limitless potential of imagination with the power of technology to elevate brands to new heights in this digital transformation era.</p>
+                    <h1><span class='highlight'>{{ $AboutUsBanner->heading }}</span></h1>
+                    <p>{{ $AboutUsBanner->content }}</p>
                 </div>
             </div>
         </div>
@@ -20,13 +20,11 @@
             <div class='col-lg-7 col-md-6 col-xs-12'>
 
                 <h3 class='subtitle4'>WHO WE ARE?</h3>
-                <h2 class='title'><span class='highlight'>WE ARE USAs TOP RATED WEBSITE DESIGN COMPANY</span></h2>
-                <p class='para'>With our originality and inventiveness, we have always aimed to satisfy every client with whom we have worked. Our Website Design Company employs skilled Website Designers, Digital Marketers, authors, brand creators, Mobile App developers, and business advisors who work tirelessly to create your brand from the ground up. As an Website Design Agency, we have spent decades in the area and know how to grow your business.</p>
-                <p class='para'>Our high-quality Website Design Services have helped us develop a worldwide clientele. Some of the prior work we have done for our clients can be used to assess our Web Designers team skills. At The Core Designs Unit LLC Our Website Designers examine every part of the market in order to produce some of the greatest results.</p>
+                {!! $WhoWeAre->about_content !!}
             </div>
             <div class='col-lg-5 col-md-6 col-xs-12'>
                 <div class='whoweare-img'>
-                    <img src="{{url('user_assets/images/whoweour.png')}}" />
+                    <img src="{{url($WhoWeAre->image)}}" />
                 </div>
             </div>
         </div>
@@ -37,14 +35,12 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-7 col-md-6 col-xs-12">
-
                 <h2 class='title'><span class='highlight'>Mission Vision</span></h2>
-                <p class='para'>Sed quisque et in commodo quisque ut. Sapien purus sed in cras donec leo aenean eu nec. Fringilla elementum eget est amet ut porttitor natoque. Curabitur lacus tristique id turpis odio neque tempor ornare. Adipiscing habitant adipiscing dolor proin nunc ornare eu. Nibh feugiat mi ut placerat suspendisse nisl vitae semper. Sed quisque et in commodo quisque ut. Sapien purus sed in cras donec leo aenean eu nec. Fringilla elementum eget est amet ut porttitor natoque. Curabitur lacus tristique id turpis odio neque tempor ornare. Adipiscing habitant adipiscing dolor proin nunc ornare eu. Nibh feugiat mi ut placerat suspendisse nisl vitae semper.</p>
-                <p class='para'> Sapien purus sed in cras donec leo aenean eu nec. Fringilla elementum eget est amet ut porttitor natoque. Curabitur lacus tristique id turpis odio neque tempor ornare. Adipiscing habitant adipiscing dolor proin nunc ornare eu. Nibh feugiat mi ut placerat suspendisse nisl vitae semper.</p>
+                {!! $MissionVision->about_content!!}
             </div>
             <div class="col-lg-5 col-md-5 col-xs-12">
                 <div class='whoweare-img'>
-                    <img src="{{url('user_assets/images/whoweour.png')}}" />
+                    <img src="{{url($MissionVision->image)}}" />
                 </div>
             </div>
         </div>
@@ -54,24 +50,17 @@
 <section class='ourloyal-section'>
     <div class="container">
     <div class='row justify-content-center text-center'>
-        <h2 class='title'>Our Loyal Customers</h2>
-        <p class='para'>Lorem ipsum dolor sit amet consectetur. Massa sodales in sed leo convallis at. Enim sollicitudin ullamcorper sollicitudin tincidunt sed volutpat sapien lorem tempor. Id viverra proin adipiscing et nisi ut aliquam lobortis commodo. Vulputate eget interdum consequat fames libero.</p>
+        <h2 class='title'>{{ $LoyalCustomers->heading }}</h2>
+        <p class='para'>{{ $LoyalCustomers->content }}</p>
     </div>
         <div class='row mt-4'>
 
             <div class="owl-carousel ourloyalcarousel">
+                @foreach($LoyalCustomersImages as $item)
                 <div class='item'>
-                    <img src="{{url('user_assets/images/l1.png')}}" class='ly1' alt="" />
+                    <img src="{{url($item->images)}}" class='ly1' alt="" />
                 </div>
-                <div class='item'>
-                    <img src="{{url('user_assets/images/l2.png')}}" class='ly1' alt="" />
-                </div>
-                <div class='item'>
-                    <img src="{{url('user_assets/images/l3.png')}}" class='ly1' alt="" />
-                </div>
-                <div class='item'>
-                    <img src="{{url('user_assets/images/l4.png')}}" class='ly1' alt="" />
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -82,23 +71,35 @@
         <div class="row">
              <div class="col-lg-5 col-md-6 col-xs-12">
                 <div class='philosphy-img'>
-                    <img src="{{url('user_assets/images/whoweour.png')}}" />
+                    <img src="{{url($OurPhilosophy->image)}}" />
                 </div>
             </div>
             <div class="col-lg-7 col-md-7 col-xs-12" class='my-auto'>
                 <h2 class='title'><span class='highlight'>Our Philosophy</span></h2>
 
                 <div class='philosphy-content1'>
-                    <h3>Customer-driven</h3>
-                    <p class='para'>In the market, we have the most customer-centric approach. Our client-centred policy enables us to meet and exceed our client's expectation</p>
+                    <h3>{{ $OurPhilosophy->first_heading }}</h3>
+                    <p class='para'>{{ $OurPhilosophy->first_content }}</p>
                 </div>
                 <div class='philosphy-content1'>
-                    <h3>Customer-driven</h3>
-                    <p class='para'>In the market, we have the most customer-centric approach. Our client-centred policy enables us to meet and exceed our client's expectation</p>
+                    <h3>{{ $OurPhilosophy->second_heading }}</h3>
+                    <p class='para'>{{ $OurPhilosophy->second_content }}</p>
                 </div>
                 <div class='philosphy-content1'>
-                    <h3>Customer-driven</h3>
-                    <p class='para'>In the market, we have the most customer-centric approach. Our client-centred policy enables us to meet and exceed our client's expectation</p>
+                    <h3>{{ $OurPhilosophy->third_heading }}</h3>
+                    <p class='para'>{{ $OurPhilosophy->third_content }}</p>
+                </div>
+                <div class='philosphy-content1'>
+                    <h3>{{ $OurPhilosophy->fourth_heading }}</h3>
+                    <p class='para'>{{ $OurPhilosophy->fourth_content }}</p>
+                </div>
+                <div class='philosphy-content1'>
+                    <h3>{{ $OurPhilosophy->fifth_heading }}</h3>
+                    <p class='para'>{{ $OurPhilosophy->fifth_content }}</p>
+                </div>
+                <div class='philosphy-content1'>
+                    <h3>{{ $OurPhilosophy->sixth_heading }}</h3>
+                    <p class='para'>{{ $OurPhilosophy->sixth_content }}</p>
                 </div>
             </div>
         </div>

@@ -60,7 +60,7 @@
                     <div class="card-body">
                         <h5 class="mb-4">List Of Service Details</h5>
                         <div style="display: flex; justify-content: end; margin:20px 44px 0 0">
-                            <a href="{{ url('add_service_detail') }}" class="btn btn-primary cbtn">Create Service Detail</a>
+                            <a href="{{ url('add_service_detail') }}" class="btn btn-primary cbtn"><span class="d-inline-block"> Create Service Detail</span> <i class="simple-icon-arrow-right"></i> </a>
                         </div>
                         <hr>
                         <table class="data-table data-table-feature-for-categories">
@@ -73,17 +73,159 @@
                             <tbody>
                                 @foreach($ServiceDetail as $item)
                                 <tr>
+                                    {{-- {{dd($item->id)}} --}}
                                     <td>{{ $item->SubCategory->sub_category_name }}</td>
                                     <td>
-                                        <a href="{{ url('delete_our_services/'.$item->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                        <a href="{{ url('delete_service_detail/'.$item->id) }}" class="btn btn-danger btn-sm">Delete</a>
                                         
-                                        <button type="button" class="btn btn-warning btn-sm edit_Services" 
-                                        data-id="{{$item->id}}" data-toggle="modal" data-target=".bd-example-modal-lg">Edit</button>  
+                                        <a href="{{ url('edit_service_detail/'.$item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                        
+                                        {{-- <button type="button" class="btn btn-warning btn-sm edit_Services_details" 
+                                        data-id="{{ $item->id }}" 
+                                        data-toggle="modal" data-target=".bd-example-modal-lg">Edit</button>   --}}
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Service Works</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="" enctype="multipart/form-data">
+                            @csrf
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Sub Categories</label>
+
+                                <select name="sub_category" id="edit_service_detal_sub_category" class="form-control edit_service_detal_sub_category" value="{{ old('sub_category') }}">
+                                    <option value="" disabled selected>Select</option>
+                                    @foreach($SubCategory as $item)
+                                        <option value="{{ $item->id }}">{{ $item->sub_category_name }}</option>
+                                    @endforeach
+                                </select>
+
+                                @error('sub_category')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror                                
+                            </div>
+
+                            <br>
+                            <h2>Add Banner Details</h2>
+                            <hr>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Banner Heading</label>
+
+                                <input type="text" name="banner_heading" id="banner_heading" class="form-control" value="{{ old('banner_heading') }}">
+
+                                @error('banner_heading')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror                                
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Banner Content</label>
+
+                                <textarea name="banner_content" id="banner_content" class="form-control" rows="5" value="{{ old('banner_content') }}"></textarea>
+
+                                @error('banner_content')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror                                
+                            </div>
+
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h2>Add Our Process</h2>
+                                </div>
+                                <div class="col-lg-6 text-right" >
+                                    <h6><a href="javascript:void();" class="add_more">+ Add More Process</a></h6>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="col-lg-12 col-md-12 mb-4">
+                                <h5 class="card-title">Bordered Table</h5>
+    
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Process Heading</th>
+                                            <th scope="col">Process Content</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="append">
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <input type="hidden" class="row_number" name="row_number" id="row_number" value="1">
+                                            <td>
+                                                <input type="text" name="process_heading[]" id="process_heading" class="form-control" value="">
+
+                                                @error('process_heading')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                            <td>
+                                                <textarea name="process_content[]" id="process_content" class="form-control" rows="5" value=""></textarea>
+
+                                                @error('process_content')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                            <td><a href="javascript:void(0);" class="btn btn-danger btn-sm remove" data-id="1">Remove</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <br>
+                            <h2>Add Content Details</h2>
+                            <hr>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">About Content</label>
+                                <textarea name="about_content" id="ckEditorClassic" class="form-control" rows="5" value="{{ old('about_content') }}"></textarea>
+                                @error('about_content')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror                                
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">About Image</label>
+                                <input type="file" name="banner_image_service_detail" id="banner_image_service_detail"  value="{{ old('banner_image_service_detail') }}" class="form-control banner_image_service_detail">
+                                @error('banner_image_service_detail')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror                                
+                            </div>
+
+                            <section>
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-3 col-md-6 col-xs-12">
+                                            <div class="card mcard banner_image_service_detail_display" id="banner_image_service_detail_display">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <button type="submit" class="btn btn-primary mb-0">Update</button>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -5,6 +5,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ServicesController;
+use App\Http\Controllers\Admin\AboutUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,11 @@ use App\Http\Controllers\Admin\ServicesController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('demo',function()
+{
+    return view('welcome');
+});
 
 Route::middleware(['auth'])->group(function () {
 
@@ -85,12 +91,28 @@ Route::middleware(['auth'])->group(function () {
     Route::get('service_details',[ServicesController::class,'service_details'])->name('service_details');
     Route::get('add_service_detail',[ServicesController::class,'add_service_detail'])->name('add_service_detail');
     Route::post('create_service_detail',[ServicesController::class,'create_service_detail'])->name('create_service_detail');
+    Route::get('edit_service_detail/{id}',[ServicesController::class,'edit_service_detail'])->name('edit_service_detail');
+    Route::post('update_service_details',[ServicesController::class,'update_service_details'])->name('update_service_details');
+    Route::get('delete_service_detail/{id}',[ServicesController::class,'delete_service_detail'])->name('delete_service_detail');
+
+    //About Us Section 
+    Route::get('all_about_us_banner',[AboutUsController::class,'all_about_us_banner'])->name('all_about_us_banner');
+    Route::post('update_about_banner',[AboutUsController::class,'update_about_banner'])->name('update_about_banner');
+    Route::get('who_we_are',[AboutUsController::class,'who_we_are'])->name('who_we_are');
+    Route::post('update_who_we_are',[AboutUsController::class,'update_who_we_are'])->name('update_who_we_are');
+    Route::get('mission_vision',[AboutUsController::class,'mission_vision'])->name('mission_vision');
+    Route::post('update_mission_vision',[AboutUsController::class,'update_mission_vision'])->name('update_mission_vision');
+
+    Route::get('our_Philosophy',[AboutUsController::class,'our_Philosophy'])->name('our_Philosophy');
+    Route::post('update_our_philosophy',[AboutUsController::class,'update_our_philosophy'])->name('update_our_philosophy');
 });
 
 
 Route::get('/',[FrontController::class,"index"])->name('index');
 
 Route::get('about_us',[FrontController::class,"about_us"])->name('about-us');
+
+
 
 Route::get('service',[FrontController::class,"service"])->name('service');
 Route::post('get_services_for_home',[FrontController::class,"get_services_for_home"])->name('get_services_for_home');
@@ -109,3 +131,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::post('contact_us',[FrontController::class,"contact_us"]);
 
+Route::get('get_header_services',[FrontController::class,'get_header_services']);
+Route::get('service_detail_for_user/{id}',[FrontController::class,'service_detail_for_user']);

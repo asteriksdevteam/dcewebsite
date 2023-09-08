@@ -10,95 +10,11 @@
               <ul>
                 <li><a href='{{ url('/') }}'>Home</a></li>
                 <li><a href='{{ url('about_us') }}'>About</a></li>
-                  <li class="custom-dropdown"><a href='{{ url('service') }}'>our services <i class="fa fa-angle-down"></i></a>
+                  <li class="custom-dropdown"><a href='javascript:void();'>our services <i class="fa fa-angle-down"></i></a>
                       <div class="meg-menu">
                           <div class="container">
-                              <div class="row">
-                                  <div class="col-md-3">
-                                      <div class="widget widgetfirst">
-                                          <h6>digital marketing</h6>
-                                      </div>
-                                      <div class="mega-list mega-firstlist">
-                                          <ul>
-                                              <li><a href="#">seo</a></li>
-                                              <li><a href="#">ppc</a></li>
-                                              <li><a href="#">social media marketing</a></li>
-                                              <li><a href="#">search engine</a></li>
-                                              <li><a href="#">search engine marketing</a></li>
-                                              <li><a href="#">video marketing</a></li>
-                                              <li><a href="#">e-commerce marketing</a></li>
-                                              <li><a href="#">content marketing</a></li>
-                                              <li><a href="#">email marketing</a></li>
-                                              <li><a href="#">small business seo</a></li>
-                                              <li><a href="#">local seo</a></li>
-                                              <li><a href="#">google ads</a></li>
-                                          </ul>
-                                      </div>
-                                  </div>
-                                  <div class="col-md-3">
-                                      <div class="widget">
-                                          <h6>content services</h6>
-                                      </div>
-                                      <div class="mega-list mega-secondtlist">
-                                          <ul>
-                                              <li><a href="#">seo</a></li>
-                                              <li><a href="#">ppc</a></li>
-                                              <li><a href="#">social media marketing</a></li>
-                                              <li><a href="#">search engine</a></li>
-                                              <li><a href="#">search engine marketing</a></li>
-                                              <li><a href="#">video marketing</a></li>
-                                              <li><a href="#">e-commerce marketing</a></li>
-                                              <li><a href="#">content marketing</a></li>
-                                              <li><a href="#">email marketing</a></li>
-                                              <li><a href="#">small business seo</a></li>
-                                              <li><a href="#">local seo</a></li>
-                                              <li><a href="#">google ads</a></li>
-                                          </ul>
-                                      </div>
-                                  </div>
-                                  <div class="col-md-3">
-                                      <div class="widget">
-                                          <h6>it services</h6>
-                                      </div>
-                                      <div class="mega-list mega-thirdlist">
-                                          <ul>
-                                              <li><a href="#">seo</a></li>
-                                              <li><a href="#">ppc</a></li>
-                                              <li><a href="#">social media marketing</a></li>
-                                              <li><a href="#">search engine</a></li>
-                                              <li><a href="#">search engine marketing</a></li>
-                                              <li><a href="#">video marketing</a></li>
-                                              <li><a href="#">e-commerce marketing</a></li>
-                                              <li><a href="#">content marketing</a></li>
-                                              <li><a href="#">email marketing</a></li>
-                                              <li><a href="#">small business seo</a></li>
-                                              <li><a href="#">local seo</a></li>
-                                              <li><a href="#">google ads</a></li>
-                                          </ul>
-                                      </div>
-                                  </div>
-                                  <div class="col-md-3">
-                                      <div class="widget widgetlast">
-                                          <h6>design & development</h6>
-                                      </div>
-                                      <div class="mega-list mega-fourthlist">
-                                          <ul>
-                                              <li><a href="#">seo</a></li>
-                                              <li><a href="#">ppc</a></li>
-                                              <li><a href="#">social media marketing</a></li>
-                                              <li><a href="#">search engine</a></li>
-                                              <li><a href="#">search engine marketing</a></li>
-                                              <li><a href="#">video marketing</a></li>
-                                              <li><a href="#">e-commerce marketing</a></li>
-                                              <li><a href="#">content marketing</a></li>
-                                              <li><a href="#">email marketing</a></li>
-                                              <li><a href="#">small business seo</a></li>
-                                              <li><a href="#">local seo</a></li>
-                                              <li><a href="#">google ads</a></li>
-                                          </ul>
-                                      </div>
-                                  </div>
-                              </div>
+                                <div class="row" id="services">
+                                </div>
                           </div>
                       </div>
                   </li>

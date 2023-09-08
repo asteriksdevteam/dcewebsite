@@ -24,6 +24,25 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.js"></script>
 <script src="{{ url('user_assets/js/owl.carousel.min.js')}}"></script>
 @include('user_panel.script')
-
+<script>
+    $(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+        
+        $.ajax({
+            url: "{{ url('get_header_services') }}",
+            type: 'get',
+            data: {
+                "_token": "{{ csrf_token() }}",
+            },
+            success: function(result){
+                $('#services').html(result);
+            }
+        });
+    })
+</script>
 </body>
 </html>
