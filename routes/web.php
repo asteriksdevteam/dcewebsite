@@ -105,6 +105,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('our_Philosophy',[AboutUsController::class,'our_Philosophy'])->name('our_Philosophy');
     Route::post('update_our_philosophy',[AboutUsController::class,'update_our_philosophy'])->name('update_our_philosophy');
+
+    Route::get('asked_question',[AboutUsController::class,'asked_question'])->name('asked_question');
+    Route::post('add_question_asnwer',[AboutUsController::class,'add_question_asnwer'])->name('add_question_asnwer');
+    Route::get('delete_question_answer/{id}', [AboutUsController::class,'delete_question_answer'])->name('delete_question_answer');
+
+    Route::get('edit_last_about_banner',[AboutUsController::class,'edit_last_about_banner'])->name('edit_last_about_banner');
+    Route::post('update_last_about_banner',[AboutUsController::class,'update_last_about_banner'])->name('update_last_about_banner');
 });
 
 
@@ -133,3 +140,5 @@ Route::post('contact_us',[FrontController::class,"contact_us"]);
 
 Route::get('get_header_services',[FrontController::class,'get_header_services']);
 Route::get('service_detail_for_user/{id}',[FrontController::class,'service_detail_for_user']);
+
+Route::post('get_work_specific_service',[FrontController::class,'get_work_specific_service']);

@@ -25,6 +25,8 @@ use App\Models\AboutUsBanner;
 use App\Models\WhoWeAre;
 use App\Models\MissionVision;
 use App\Models\OurPhilosophy;
+use App\Models\QuestionAnswer;
+use App\Models\LastAboutBanner;
 
 
 // use Location;
@@ -59,7 +61,9 @@ class FrontController extends Controller
         $LoyalCustomers = LoyalCustomers::first();
         $LoyalCustomersImages = LoyalCustomersImages::get();
         $OurPhilosophy = OurPhilosophy::first();
-        return view('user_panel.aboutus',compact('AboutUsBanner','OurPhilosophy','WhoWeAre','MissionVision','LoyalCustomers','LoyalCustomersImages'));
+        $QuestionAnswer = QuestionAnswer::get();
+        $LastAboutBanner = LastAboutBanner::first();
+        return view('user_panel.aboutus',compact('LastAboutBanner', 'AboutUsBanner','QuestionAnswer','OurPhilosophy','WhoWeAre','MissionVision','LoyalCustomers','LoyalCustomersImages'));
     }
 
     public function service()
@@ -98,6 +102,7 @@ class FrontController extends Controller
     public function get_work_on_home(Request $request)
     {
         $SubCategoryItemImages = SubCategoryItemImages::where('sub_categories_items_id',$request->id)->get();
+        
         $image = "";
         foreach($SubCategoryItemImages as $item)
         {
@@ -191,11 +196,37 @@ class FrontController extends Controller
 
     public function service_detail_for_user($id)
     {
-        $ServiceDetail = ServiceDetail::where('sub_category',$id)->first();
+        $SubCategory = SubCategory::with('SubCategoryItem.SubCategoryItemImages')->where('id',$id)->first();
+
+        $SubCategoryItem = SubCategoryItem::with('SubCategoryItemImages')->where('sub_category_id',$SubCategory->id)->get();
+
+        $SubCategoryItemSelectId = SubCategoryItem::select('id')->where('sub_category_id',$SubCategory->id)->get();
+        
+        $SubCategoryItemImages = SubCategoryItemImages::whereIn('sub_categories_items_id', $SubCategoryItemSelectId)->get();
+
+        $ServiceDetail = ServiceDetail::where('sub_category',$SubCategory->id)->first();
 
         $ServiceDetailProcess = ServiceDetailProcess::where('service_detail_id',$ServiceDetail->id)->get();
-        // dd($ServiceDetail, $ServiceDetailProcess);
 
-        return view('user_panel.service', compact('ServiceDetail', 'ServiceDetailProcess'));
+        return view('user_panel.service', compact('ServiceDetail', 'SubCategoryItemImages' ,'ServiceDetailProcess','SubCategoryItem'));
+    }
+
+    public function get_work_specific_service(Request $request)
+    {
+        $SubCategoryItemImages = SubCategoryItemImages::where('sub_categories_items_id',$request->id)->get();
+
+        $domainUrl = config('app.url');
+
+        $image = "";
+        foreach($SubCategoryItemImages as $item)
+        {
+            $image .= "<div class='col-lg-3 col-md-6'>";
+            $image .= "<div class='window'>";
+            $image .= "<img src='".url($item->images)."' style='width: 300px; height: 200px;' alt=''>";
+            $image .= "</div>";
+            $image .= "</div>";
+        }
+
+        return response()->json(['image' => $image]);
     }
 }

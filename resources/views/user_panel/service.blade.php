@@ -51,98 +51,49 @@
 
 <section class="ourwork-section">
     <div class="container">
-     <div class="row">
-
-        <div class="col-lg-4 col-md-6">
-            <div class="ourwork-content">
-             <h2 class="title">
-                Our <span class="highlight">Work</span>
-             </h2>
-             <p>
-                Experience a world of design possibilities - with over 100 categories, we have got everything you need
-                to create the perfect web design and beyond. No matter your business need or budget, we are here to
-                help bring your vision to life.
-             </p>
-            </div>
-         </div>
-         <div class="col-lg-8 col-md-6 my-auto">
-            <div class="custom-tabs nav nav-tabs" id="myTab" role="tablist">
-
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active custom-title" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="all-tab-pane" aria-selected="true">all</button>
-                 </li>
-                 <li class="nav-item" role="presentation">
-                    <button class="nav-link custom-title" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">ecommerce</button>
-                 </li>
-                 <li class="nav-item" role="presentation">
-                    <button class="nav-link custom-title" id="logodesign-tab" data-bs-toggle="tab" data-bs-target="#logodesign-tab-pane" type="button" role="tab" aria-controls="logodesign-tab-pane" aria-selected="false">logo design</button>
-                 </li>
-                 <li class="nav-item" role="presentation">
-                    <button class="nav-link custom-title" id="article-tab" data-bs-toggle="tab" data-bs-target="#article-tab-pane" type="button" role="tab" aria-controls="article-tab-pane" aria-selected="false" >article</button>
-                 </li>
-                 <li class="nav-item" role="presentation">
-                    <button class="nav-link custom-title" id="webapp-tab" data-bs-toggle="tab" data-bs-target="#webapp-tab-pane" type="button" role="tab" aria-controls="webapp-tab-pane" aria-selected="false" >web app</button>
-                 </li>
-                 <li class="nav-item" role="presentation">
-                    <button class="nav-link custom-title" id="blogsite-tab" data-bs-toggle="tab" data-bs-target="#blogsite-tab-pane" type="button" role="tab" aria-controls="blogsite-tab-pane" aria-selected="false" >blog site</button>
-                 </li>
-                 <li class="nav-item" role="presentation">
-                    <button class="nav-link custom-title" id="videoanimation-tab" data-bs-toggle="tab" data-bs-target="#videoanimation-tab-pane" type="button" role="tab" aria-controls="videoanimation-tab-pane" aria-selected="false" >video animation</button>
-                 </li>
-            </div>
-         </div>
-     </div>
-
-     <div class="row">
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="window">
-                            <img src="{{url('user_assets/images/ourwork01.png')}}" style="width: 300px; height: 200px;" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="window">
-                            <img src="{{url('user_assets/images/ourwork02.png')}}" style="width: 300px; height: 200px;" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="window">
-                            <img src="{{url('user_assets/images/ourwork03.png')}}" style="width: 300px; height: 200px;" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="window">
-                            <img src="{{url('user_assets/images/ourwork04.png')}}" style="width: 300px; height: 200px;" alt="">
-                        </div>
-                    </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="ourwork-content">
+                    <h2 class="title">
+                        Our <span class="highlight">Work</span>
+                    </h2>
+                    <p>
+                        Experience a world of design possibilities - with over 100 categories, we have got everything you need
+                        to create the perfect web design and beyond. No matter your business need or budget, we are here to
+                        help bring your vision to life.
+                    </p>
                 </div>
-                <div class="row mt-4">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="window">
-                            <img src="{{url('user_assets/images/ourwork05.png')}}" style="width: 300px; height: 200px;" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="window">
-                            <img src="{{url('user_assets/images/ourwork06.png')}}" style="width: 300px; height: 200px;" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="window">
-                            <img src="{{url('user_assets/images/ourwork07.png')}}" style="width: 300px; height: 200px;" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="window">
-                            <img src="{{url('user_assets/images/ourwork08.png')}}" style="width: 300px; height: 200px;" alt="">
-                        </div>
+            </div>
+            <div class="col-lg-8 col-md-6 my-auto">
+                <div class="custom-tabs nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active custom-title all_work" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="all-tab-pane" aria-selected="true">all</button>
+                        </li>
+                    @foreach($SubCategoryItem as $item)
+                        <li class="nav-item service_detail_name_li" role="presentation">
+                            <input type="hidden" class="service_detail_name" value="{{$item->id}}" name="service_detail_name" id="service_detail_name">
+                            <button class="nav-link custom-title" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="all-tab-pane" aria-selected="true">{{ $item->item_name }}</button>
+                        </li>
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
+                    <div class="row spesificworkimages">
+                        @foreach($SubCategoryItemImages as $item)
+                            <div class="col-lg-3 col-md-6">
+                                <div class="window">
+                                    <img src="{{url( $item->images )}}" style="width: 300px; height: 200px;" alt="">
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
-         </div>
-     </div>
+        </div>
     </div>
 </section>
 
@@ -153,65 +104,25 @@
             <p class='para'>Sed quisque et in commodo quisque ut. Sapien purus sed in cras donec leo aenean eu nec. Fringilla elementum eget est amet ut porttitor natoque. Curabitur lacus tristique id turpis odio neque tempor ornare. Adipiscing habitant adipiscing dolor proin nunc ornare eu. Nibh feugiat mi ut placerat suspendisse nisl vitae semper.</p>
         </div>
         <div class='row mt-4'>
-            <div class="col-lg-6 col-md-6 col-xs-12">
-                <div class='whyus-conten1 process-conten1'>
-                    <h1 class='mb-3 processlabel'>01</h1>
-                    <div class='d-flex'>
-                        <div class='whyus-leftcontent'>
-                            <div class='whyus-leftimg'></div>
-                        </div>
-                        <div class='whyus-rightcontent'>
-                            <h6 class='smalltitle'>Sed quisque et in commodo.</h6>
-                            <p>Sapien purus sed in cras donec leo aenean eu nec. Fringilla elementum eget est amet ut porttitor natoque. Curabitur lacus tristique id turpis odio neque tempor ornare. Adipiscing habitant adipiscing dolor proin nunc ornare eu.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-xs-12">
-                <div class='whyus-conten1 process-conten1'>
-                <h1 class='mb-3 processlabel'>02</h1>
-                    <div class='d-flex'>
-                        <div class='whyus-leftcontent'>
-                            <div class='whyus-leftimg'></div>
-                        </div>
-                        <div class='whyus-rightcontent'>
-                            <h6 class='smalltitle'>Sed quisque et in commodo.</h6>
-                            <p>Sapien purus sed in cras donec leo aenean eu nec. Fringilla elementum eget est amet ut porttitor natoque. Curabitur lacus tristique id turpis odio neque tempor ornare. Adipiscing habitant adipiscing dolor proin nunc ornare eu.</p>
+            @foreach ($ServiceDetailProcess as $key => $item)
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <div class='whyus-conten1 process-conten1'>
+                        <h1 class='mb-3 processlabel'>0{{ ++$key }}</h1>
+                        <div class='d-flex'>
+                            <div class='whyus-leftcontent'>
+                                <div class='whyus-leftimg'></div>
+                            </div>
+                            <div class='whyus-rightcontent'>
+                                <h6 class='smalltitle'>Sed quisque et in commodo.</h6>
+                                <p>Sapien purus sed in cras donec leo aenean eu nec. Fringilla elementum eget est amet ut porttitor natoque. Curabitur lacus tristique id turpis odio neque tempor ornare. Adipiscing habitant adipiscing dolor proin nunc ornare eu.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
+            
         </div>
-        <div class='row mt-1'>
-            <div class="col-lg-6 col-md-6 col-xs-12">
-                <div class='whyus-conten1 process-conten1'>
-                <h1 class='mb-3 processlabel'>03</h1>
-                    <div class='d-flex'>
-                        <div class='whyus-leftcontent'>
-                            <div class='whyus-leftimg'></div>
-                        </div>
-                        <div class='whyus-rightcontent'>
-                            <h6 class='smalltitle'>Sed quisque et in commodo.</h6>
-                            <p>Sapien purus sed in cras donec leo aenean eu nec. Fringilla elementum eget est amet ut porttitor natoque. Curabitur lacus tristique id turpis odio neque tempor ornare. Adipiscing habitant adipiscing dolor proin nunc ornare eu.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-xs-12">
-                <div class='whyus-conten1 process-conten1'>
-                <h1 class='mb-3 processlabel'>04</h1>
-                    <div class='d-flex'>
-                        <div class='whyus-leftcontent'>
-                            <div class='whyus-leftimg'></div>
-                        </div>
-                        <div class='whyus-rightcontent'>
-                            <h6 class='smalltitle'>Sed quisque et in commodo.</h6>
-                            <p>Sapien purus sed in cras donec leo aenean eu nec. Fringilla elementum eget est amet ut porttitor natoque. Curabitur lacus tristique id turpis odio neque tempor ornare. Adipiscing habitant adipiscing dolor proin nunc ornare eu.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
 </section>
 

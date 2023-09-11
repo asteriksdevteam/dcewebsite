@@ -74,7 +74,7 @@
                         <span>Services</span>
                     </a>
                 </li>
-                <li class="{{ $_SERVER['REQUEST_URI'] === '/all_about_us_banner' || $_SERVER['REQUEST_URI'] === '/who_we_are' || $_SERVER['REQUEST_URI'] === '/mission_vision' || $_SERVER['REQUEST_URI'] === '/our_Philosophy' ? 'active' : '' }}">
+                <li class="{{ $_SERVER['REQUEST_URI'] === '/edit_last_about_banner' || $_SERVER['REQUEST_URI'] === '/asked_question' || $_SERVER['REQUEST_URI'] === '/all_about_us_banner' || $_SERVER['REQUEST_URI'] === '/who_we_are' || $_SERVER['REQUEST_URI'] === '/mission_vision' || $_SERVER['REQUEST_URI'] === '/our_Philosophy' ? 'active' : '' }}">
                     <a href="#about_us">
                         <i class="simple-icon-organization"></i>
                         <span>About Us </span>
@@ -208,11 +208,16 @@
                                     <i class="simple-icon-puzzle"></i> <span class="d-inline-block">Our Philosophy</span>
                                 </a>
                             </li>
-                            {{-- <li> --}}
-                                {{-- <a href="{{ url('category') }}">
-                                    <i class="simple-icon-puzzle"></i> <span class="d-inline-block">Asked Question’s</span>
+                            <li class="{{ $_SERVER['REQUEST_URI'] === '/asked_question' ? 'active' : '' }}">
+                                <a href="{{ url('asked_question') }}">
+                                    <i class="simple-icon-question"></i> <span class="d-inline-block">Asked Question’s</span>
                                 </a>
-                            </li> --}}
+                            </li>
+                            <li class="{{ $_SERVER['REQUEST_URI'] === '/edit_last_about_banner' ? 'active' : '' }}">
+                                <a href="{{ url('edit_last_about_banner') }}">
+                                    <i class="simple-icon-ban"></i> <span class="d-inline-block">Edit Last Banner</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

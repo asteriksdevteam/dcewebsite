@@ -198,5 +198,24 @@
 
     })
     
+    $(document).on('click','.service_detail_name_li', function() {
+        var id = $(this).find('.service_detail_name').val();
+        $.ajaxSetup({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "{{ url('get_work_specific_service') }}",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                id: id,
+            },
+            success: function(result){
+                $('.spesificworkimages').html(result.image)
+            }
+        });
+    })
     
 </script>

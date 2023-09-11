@@ -776,7 +776,40 @@
                     }
                 });
             });
+
+            $(document).on('click','.edit_Services_details', function() {
+                var id = $(this).data("id");
+                var question  = $(this).data("question");
+                var answer  = $(this).data("answer");
+
+                $("#edit_id").val(id);
+                $("#edit_question").val(question);
+                $("#edit_answer").val(answer);
+            });
+
+            $(document).ready(function() {
+                $('#last_banner_image').on('change', function(event) {
+                    var selectedImage = event.target.files[0];
+
+                    if (selectedImage) 
+                    {
+                        var reader = new FileReader();
+
+                        reader.onload = function(e) {
+                            $('#show_last_banner_image').html('<img src="' + e.target.result + '">');
+                        };
+
+                        reader.readAsDataURL(selectedImage);
+                    } 
+                    else 
+                    {
+                        $('#show_last_banner_image').empty();
+                    }
+                });
+            });
+            
         //This script for About Us Data End
+        
 
     });
 </script>

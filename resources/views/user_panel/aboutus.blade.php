@@ -149,221 +149,28 @@
                 <h2 class='title'>Frequently Asked <span className='highlight'>Question’s</span></h2>
             </div>
         </div>
+
         <div class='row mt-5'>
+            @foreach($QuestionAnswer as $item)
             <div class="col-lg-6 col-md-6 col-xs-12">
                 <div class="accordion" id="accordionExample">
+
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                <h4 className='faq-heading'>Sapien purus sed in cras donec eu nec</h4>
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{$item->id}}" aria-expanded="true" aria-controls="collapseOne{{$item->id}}">
+                                <h4 className='faq-heading'>{{ $item->question }}</h4>
                             </button>
                         </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                        <div id="collapseOne{{$item->id}}" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <p className='para'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt mollit anim id est laborum.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-4 pt-1">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <h4 className='faq-heading'>Sapien purus sed in cras donec eu nec</h4>
-                            </button>
-                            </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p className='para'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt mollit anim id est laborum.</p>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 pt-1">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                <h4 className='faq-heading'>Sapien purus sed in cras donec eu nec</h4>
-                            </button>
-                            </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p className='para'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt mollit anim id est laborum.</p>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 pt-1">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                <h4 className='faq-heading'>Sapien purus sed in cras donec eu nec</h4>
-                            </button>
-                            </h2>
-                            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p className='para'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt mollit anim id est laborum.</p>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 pt-1">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                <h4 className='faq-heading'>Sapien purus sed in cras donec eu nec</h4>
-                            </button>
-                            </h2>
-                            <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p className='para'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt mollit anim id est laborum.</p>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-xs-12">
-                <div class="accordion" id="accordionExample">
-                    <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
-                            <h4 className='faq-heading'>Sapien purus sed in cras donec eu nec</h4>
-                        </button>
-                    </h2>
-                    <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <p className='para'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>
-                    </div>
-                    </div>
-                    
-                    <div class="mt-4 pt-1">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                                <h4 className='faq-heading'>Sapien purus sed in cras donec eu nec</h4>
-                            </button>
-                            </h2>
-                            <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p className='para'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt mollit anim id est laborum.</p>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 pt-1">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                                <h4 className='faq-heading'>Sapien purus sed in cras donec eu nec</h4>
-                            </button>
-                            </h2>
-                            <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p className='para'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt mollit anim id est laborum.</p>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 pt-1">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                                <h4 className='faq-heading'>Sapien purus sed in cras donec eu nec</h4>
-                            </button>
-                            </h2>
-                            <div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p className='para'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt mollit anim id est laborum.</p>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 pt-1">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
-                                <h4 className='faq-heading'>Sapien purus sed in cras donec eu nec</h4>
-                            </button>
-                            </h2>
-                            <div id="collapseTen" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p className='para'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt mollit anim id est laborum.</p>
-                            </div>
+                                <p className='para'>{{ $item->answer }}</p>
                             </div>
                         </div>
                     </div>
 
                 </div>
-
             </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -374,8 +181,8 @@
             <div class="col-lg-7 col-md-6 col-xs-12 my-auto">
 
                 <div class='bluebanner-content'>
-                    <h2 class='title text-white'>PHP DEVELOPMENT</h2>
-                    <p class='para text-white mt-4 mb-5 pb-1'>Our Team of Highly Skilled PHP Developers Enables Us to Deliver Creative and Result Oriented PHP Web Development Services to Serve Your Businesses.</p>
+                    <h2 class='title text-white'>{{ $LastAboutBanner->heading }}</h2>
+                    <p class='para text-white mt-4 mb-5 pb-1'>{{ $LastAboutBanner->content }}</p>
                     <div class='dlink'>
                         <a href='#' class='whitebtn'>Learn More</a>
                     </div>
@@ -383,7 +190,7 @@
             </div>
             <div class="col-lg-5 col-md-6 col-xs-12">
                 <div class='bluebanner-img'>
-                    <img src="{{url('user_assets/images/laptop.png')}}" />
+                    <img src="{{url($LastAboutBanner->image)}}" />
                 </div>
             </div>
         </div>
@@ -403,28 +210,28 @@
                 <div class='form1 mt-4'>
                     <h2 class='title'><span class='highlight'>Get in touch.</span></h2>
                     <form action="#" class='mt-4'>
-                        <div class='row'>
-                            <div class="col-lg-6">
-                                <input type="text" placeholder='name*' class='form-control' required/>
+                        <div class='row gx-3'>
+                            <div class="col-lg-6" >
+                                <input type="text" placeholder='name*' name="contact_name" id="contact_name" class='form-control' required/>
                             </div>
-                            <div class="col-lg-6">
-                                <input type="text" placeholder='email*' class='form-control' required/>
-                            </div>
-                        </div>
-                        <div class='row'>
-                            <div class="col-lg-6">
-                                <input type="text" placeholder='phone*' class='form-control' required/>
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" placeholder='subject*' class='form-control' required/>
+                            <div class="col-lg-6" >
+                                <input type="text" placeholder='email*' name="contact_email" id="contact_email" class='form-control' required/>
                             </div>
                         </div>
-                        <div class='row'>
+                        <div class='row mt-3 gx-3'>
+                            <div class="col-lg-6" >
+                                <input type="text" placeholder='phone*' name="contact_phone" id="contact_phone" class='form-control' required/>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" placeholder='subject*' name="contact_subject" id="contact_subject" class='form-control' required/>
+                            </div>
+                        </div>
+                        <div class='row mt-3 gx-3'>
                             <div class="col-lg-12">
-                                <textarea class='form-control' rows={10} placeholder='messages*' required></textarea> 
+                                <textarea class='form-control' name="contact_text" rows='5' id="contact_text" placeholder='messages*' required></textarea> 
                             </div>
                         </div>
-                        <button type='submit' class='submit'>submit  <i class="fa fa-arrow-right angleicon"></i></button>
+                        <button type='button' class='submit contact_us'>submit</button>
                     </form>
                     <div class='arrow1'><img src="{{url('user_assets//images/arrow1.png')}}" alt="" /></div>
                     <div class='arrow2'><img src="{{url('user_assets//images/arrow2.png')}}" alt="" /></div>

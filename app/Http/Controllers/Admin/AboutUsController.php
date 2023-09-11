@@ -8,6 +8,8 @@ use App\Models\AboutUsBanner;
 use App\Models\WhoWeAre;
 use App\Models\MissionVision;
 use App\Models\OurPhilosophy;
+use App\Models\QuestionAnswer;
+use App\Models\LastAboutBanner;
 
 class AboutUsController extends Controller
 {
@@ -160,8 +162,6 @@ class AboutUsController extends Controller
 
     public function update_our_philosophy(Request $request)
     {
-        // dd($request->all());
-
         $validated = $request->validate([
             'first_heading' => 'required',
             'first_content' => 'required|min:50|max:200',
@@ -297,5 +297,78 @@ class AboutUsController extends Controller
             $OurPhilosophy = OurPhilosophy::where('id', $request->id)->update($data);
         }
         return redirect()->back()->with('message', 'Updated Successfully!');
+    }
+
+    public function asked_question()
+    {
+        $QuestionAnswer = QuestionAnswer::get();
+        return view('admin_panel.about_us.asked_questions.list', compact('QuestionAnswer'));
+    }
+
+    public function add_question_asnwer(Request $request)
+    {
+        $data = array();
+
+        if($request->edit_id)
+        {
+            if($request->edit_question)
+            {
+                $data['question'] = $request->edit_question; 
+            }
+            if($request->edit_answer)
+            {
+                $data['answer'] = $request->edit_answer;
+            }
+            $QuestionAnswer = QuestionAnswer::where('id', $request->edit_id)->update($data);
+        }
+        else
+        {
+            if($request->question)
+            {
+                $data['question'] = $request->question; 
+            }
+            if($request->answer)
+            {
+                $data['answer'] = $request->answer;
+            }
+            $QuestionAnswer = QuestionAnswer::create($data);
+        }
+
+        return redirect()->back()->with('success', 'Created Successfully!');
+    }
+
+    public function delete_question_answer($id)
+    {
+        $QuestionAnswer = QuestionAnswer::find($id);
+        $QuestionAnswer->delete();
+        return redirect()->back()->with('message', 'Delete Successfully!');
+    }
+
+    public function edit_last_about_banner()
+    {
+        $LastAboutBanner = LastAboutBanner::first();
+        return view('admin_panel.about_us.edit_last_about_banner', compact('LastAboutBanner'));   
+    }
+
+    public function update_last_about_banner(Request $request)
+    {
+        $data = array();
+
+        if($request->banner_heading)
+        {
+            $data['heading'] = $request->banner_heading;
+        }
+        if($request->banner_content)
+        {
+            $data['content'] = $request->banner_content;
+        }
+        if($request->banner_image)
+        {
+            $data['image'] = $this->singleImage($request->banner_image, 'last_about_us_banner');
+        }
+
+        $LastAboutBanner = LastAboutBanner::where('id',$request->id)->update($data);
+
+        return redirect()->back()->with('success', 'Updated Successfully!');
     }
 }
