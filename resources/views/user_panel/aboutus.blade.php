@@ -74,33 +74,48 @@
                     <img src="{{url($OurPhilosophy->image)}}" />
                 </div>
             </div>
-            <div class="col-lg-7 col-md-7 col-xs-12" class='my-auto'>
+            <div class="col-lg-7 col-md-7 col-xs-12 my-auto">
                 <h2 class='title'><span class='highlight'>Our Philosophy</span></h2>
 
-                <div class='philosphy-content1'>
-                    <h3>{{ $OurPhilosophy->first_heading }}</h3>
-                    <p class='para'>{{ $OurPhilosophy->first_content }}</p>
+                <div class="owl-carousel philosphy-carousel">
+                    <div class="item">
+                        <div class='philosphy-content1'>
+                            <h3>{{ $OurPhilosophy->first_heading }}</h3>
+                            <p class='para'>{{ $OurPhilosophy->first_content }}</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class='philosphy-content1'>
+                            <h3>{{ $OurPhilosophy->second_heading }}</h3>
+                            <p class='para'>{{ $OurPhilosophy->second_content }}</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class='philosphy-content1'>
+                            <h3>{{ $OurPhilosophy->third_heading }}</h3>
+                            <p class='para'>{{ $OurPhilosophy->third_content }}</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class='philosphy-content1'>
+                            <h3>{{ $OurPhilosophy->fourth_heading }}</h3>
+                            <p class='para'>{{ $OurPhilosophy->fourth_content }}</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class='philosphy-content1'>
+                            <h3>{{ $OurPhilosophy->fifth_heading }}</h3>
+                            <p class='para'>{{ $OurPhilosophy->fifth_content }}</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class='philosphy-content1'>
+                            <h3>{{ $OurPhilosophy->sixth_heading }}</h3>
+                            <p class='para'>{{ $OurPhilosophy->sixth_content }}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class='philosphy-content1'>
-                    <h3>{{ $OurPhilosophy->second_heading }}</h3>
-                    <p class='para'>{{ $OurPhilosophy->second_content }}</p>
-                </div>
-                <div class='philosphy-content1'>
-                    <h3>{{ $OurPhilosophy->third_heading }}</h3>
-                    <p class='para'>{{ $OurPhilosophy->third_content }}</p>
-                </div>
-                <div class='philosphy-content1'>
-                    <h3>{{ $OurPhilosophy->fourth_heading }}</h3>
-                    <p class='para'>{{ $OurPhilosophy->fourth_content }}</p>
-                </div>
-                <div class='philosphy-content1'>
-                    <h3>{{ $OurPhilosophy->fifth_heading }}</h3>
-                    <p class='para'>{{ $OurPhilosophy->fifth_content }}</p>
-                </div>
-                <div class='philosphy-content1'>
-                    <h3>{{ $OurPhilosophy->sixth_heading }}</h3>
-                    <p class='para'>{{ $OurPhilosophy->sixth_content }}</p>
-                </div>
+
             </div>
         </div>
     </div>

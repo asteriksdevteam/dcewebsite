@@ -31,9 +31,9 @@ return [
     |
     */
 
-    'lifetime' => env('SESSION_LIFETIME', 120),
-
-    'expire_on_close' => false,
+    'session' => env('SESSION_DRIVER', 'file'),
+    'lifetime' => 1,
+    'expire_on_close' => true,
 
     /*
     |--------------------------------------------------------------------------

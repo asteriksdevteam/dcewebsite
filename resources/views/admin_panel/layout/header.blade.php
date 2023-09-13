@@ -80,6 +80,18 @@
                         <span>About Us </span>
                     </a>
                 </li>
+                <li class="{{ $_SERVER['REQUEST_URI'] === '/blogs' || $_SERVER['REQUEST_URI'] === '/create_blog' || $_SERVER['REQUEST_URI'] === '/edit_blog/{id}' ? 'active' : '' }}">
+                    <a href="{{ url('blogs') }}">
+                        <i class="simple-icon-social-github"></i>
+                        <span>Blogs</span>
+                    </a>
+                </li>
+                <li class="{{ $_SERVER['REQUEST_URI'] === '/edit_contact_us' ? 'active' : '' }}">
+                    <a href="{{ url('edit_contact_us') }}">
+                        <i class="iconsminds-double-circle"></i>
+                        <span>Contact Us</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

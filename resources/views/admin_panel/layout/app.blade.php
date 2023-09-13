@@ -29,7 +29,8 @@
     <link rel="stylesheet" href="{{url('admin_assets/css/vendor/select2.min.css')}}" />
     <link rel="stylesheet" href="{{url('admin_assets/css/vendor/select2-bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{url('admin_assets/css/vendor/bootstrap-datepicker3.min.css')}}" />
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
 </head>
 
 <body id="app-container" class="menu-default show-spinner">

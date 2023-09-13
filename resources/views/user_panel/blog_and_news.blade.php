@@ -74,80 +74,22 @@
 <section class='blogsection'>
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-xs-12">
-                <div class='blogcard'>
-                    <div class='blogcard-header'>
-                        <img src="{{ url('user_assets/images/blog1.png')}}" alt="" />
-                    </div>
-                    <div class='blogcard-content'>
-                        <p class='para mt-2'>3/April/2023, <span class='highlight'>Admin</span></p>
-                        <h3><span class='highlight'>Business Mission Or Essen</span></h3>
-                        <p class='paras'>We believe in study of mission is very important. Research on the history </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-xs-12">
-                <div class='blogcard'>
-                    <div class='blogcard-header'>
-                        <img src="{{ url('user_assets/images/blog1.png')}}" alt="" />
-                    </div>
-                    <div class='blogcard-content'>
-                        <p class='para mt-2'>3/April/2023, <span class='highlight'>Admin</span></p>
-                        <h3><span class='highlight'>Business Mission Or Essen</span></h3>
-                        <p class='paras'>We believe in study of mission is very important. Research on the history </p>
+            @foreach($Blog as $item)
+                <div class="col-lg-4 col-md-6 col-xs-12">
+                    <div class='blogcard'>
+                        
+                        <div class='blogcard-header'>
+                            <img src="{{ url($item->blog_image_thumb)}}" alt="" />
+                        </div>
+                        <div class='blogcard-content'>
+                            <p class='para mt-2'>3/April/2023, <span class='highlight'>Admin</span></p>
+                            <a href="{{ url('blog_detail/'.$item->slug) }}"><h3><span class='highlight'>{{ $item->blog_name }}</span></h3></a>
+                            <p class='paras'>{{ $item->blog_short_description }} </p>
+                        </div>
+                        
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-xs-12">
-                <div class='blogcard'>
-                    <div class='blogcard-header'>
-                        <img src="{{ url('user_assets/images/blog1.png')}}" alt="" />
-                    </div>
-                    <div class='blogcard-content'>
-                        <p class='para mt-2'>3/April/2023, <span class='highlight'>Admin</span></p>
-                        <h3><span class='highlight'>Business Mission Or Essen</span></h3>
-                        <p class='paras'>We believe in study of mission is very important. Research on the history </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class='row mt-1'>
-            <div class="col-lg-4 col-md-6 col-xs-12">
-                <div class='blogcard'>
-                    <div class='blogcard-header'>
-                        <img src="{{ url('user_assets/images/blog1.png')}}" alt="" />
-                    </div>
-                    <div class='blogcard-content'>
-                        <p class='para mt-2'>3/April/2023, <span class='highlight'>Admin</span></p>
-                        <h3><span class='highlight'>Business Mission Or Essen</span></h3>
-                        <p class='paras'>We believe in study of mission is very important. Research on the history </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-xs-12">
-                <div class='blogcard'>
-                    <div class='blogcard-header'>
-                        <img src="{{ url('user_assets/images/blog1.png')}}" alt="" />
-                    </div>
-                    <div class='blogcard-content'>
-                        <p class='para mt-2'>3/April/2023, <span class='highlight'>Admin</span></p>
-                        <a href='{{ url('blog_details') }}' ><h3><span class='highlight'>Business Mission Or Essen</span></h3></a>
-                        <p class='paras'>We believe in study of mission is very important. Research on the history </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-xs-12">
-                <div class='blogcard'>
-                    <div class='blogcard-header'>
-                        <img src="{{ url('user_assets/images/blog1.png')}}" alt="" />
-                    </div>
-                    <div class='blogcard-content'>
-                        <p class='para mt-2'>3/April/2023, <span class='highlight'>Admin</span></p>
-                        <h3><span class='highlight'>Business Mission Or Essen</span></h3>
-                        <p class='paras'>We believe in study of mission is very important. Research on the history </p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

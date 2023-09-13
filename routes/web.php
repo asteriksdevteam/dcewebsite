@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\AboutUsController;
+use App\Http\Controllers\Admin\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,20 @@ use App\Http\Controllers\Admin\AboutUsController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/clear', function() {
+    try {
+        // Clear various caches
+        Artisan::call('cache:clear');
+        Artisan::call('route:clear');
+        Artisan::call('config:clear');
+        Artisan::call('view:clear');
+        return 'Application caches cleared successfully.';
+    } catch (\Exception $e) {
+        return 'Cache clearing failed: ' . $e->getMessage();
+    }
+});
+
 
 Route::get('demo',function()
 {
@@ -112,6 +127,17 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('edit_last_about_banner',[AboutUsController::class,'edit_last_about_banner'])->name('edit_last_about_banner');
     Route::post('update_last_about_banner',[AboutUsController::class,'update_last_about_banner'])->name('update_last_about_banner');
+
+    Route::get('edit_contact_us',[AboutUsController::class,'edit_contact_us'])->name('edit_contact_us');
+    Route::post('contact_us_address', [AboutUsController::class,'contact_us_address'])->name('contact_us_address');
+
+
+    Route::get('blogs',[BlogController::class,'index'])->name('blogs');
+    Route::get('create_blog',[BlogController::class,'create'])->name('create_blog');
+    Route::post('create_blog_db',[BlogController::class,'create_blog_db'])->name('create_blog_db');
+    Route::get('edit_blog/{id}',[BlogController::class,'edit_blog'])->name('edit_blog');
+    Route::post('update_blog',[BlogController::class,'update'])->name('update_blog');
+    Route::get('delete_blog/{id}',[BlogController::class,"delete_blog"])->name('delete_blog');
 });
 
 
@@ -127,8 +153,7 @@ Route::post('get_work_on_home',[FrontController::class,"get_work_on_home"])->nam
 Route::get('get_all_work_on_home',[FrontController::class,"get_all_work_on_home"])->name('get_all_work_on_home');
 
 Route::get('blog_and_news',[FrontController::class,"blog_and_news"])->name('blog_and_news');
-
-Route::get('blog_details',[FrontController::class,"blog_details"])->name('blog_details');
+Route::get('blog_detail/{slug}',[FrontController::class,"blog_details"])->name('blog_details');
 
 Route::get('contact',[FrontController::class,"contact"])->name('contact');
 

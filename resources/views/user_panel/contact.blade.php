@@ -50,12 +50,7 @@
             </div>
             <div class="col-lg-6 my-auto">
                 <div class='ctlist'>
-                <h3 class='subtitle'>Dont be afraid man!  say hello</h3>
-                    <ul>
-                        <li><a href='#'>+92-345-2702202</a></li>
-                        <li><a href='#'>info@asteriksdigital.com</a></li>
-                        <li><a href='#'>Office #:302, Building #:32C - Lane 8 Bukhari Commercial, DHA Phase 6, Karachi.</a></li>
-                    </ul>
+                    {!! $OfficeAddress->office_detail !!}
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class='bannercontnet'>
-                    <h1><span class='highlight'>WE ARE USAs TOP RATED <br/> WEBSITE DESIGN COMPANY</span></h1>
+                    <h1><span class='highlight'>{{ $Blog->blog_name }}</span></h1>
                 </div>
             </div>
         </div>
@@ -15,7 +15,7 @@
     <div class="container">
         <div class='row justify-content-center'>
             <div class="col-lg-12">
-                <img src='{{ url('user_assets/images/blogdetails-image.png')}}' class='img-fluid' alt=''/>
+                <img src='{{ url($Blog->blog_image)}}' class='img-fluid' alt=''/>
             </div>
         </div>
         <div class='row mt-4'>
@@ -34,19 +34,18 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <div class='d-flex align-items-center scialdiv'>
+                            {{-- <div class='d-flex align-items-center scialdiv'>
                                 <div class='f1'>
                                     <img src='{{ url('user_assets/images/facebook.png')}}' alt='' />
                                 </div>
                                 <div class='tw'>
                                     <img src='{{ url('user_assets/images/twitter.png')}}' alt='' />
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
-                <p class='para'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu velit tempus erat egestas efficitur. In hac habitasse platea dictumst. Fusce a nunc eget ligula suscipit finibus. Aenean pharetra quis lacus at viverra. </p>
-                <p class='para'>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam quis posuere ligula. In eu dui molestie, molestie lectus eu, semper lectus. </p>
+                <p class='para'>{{ $Blog->blog_description }}</p>
             </div>
             <div class="col-lg-4 col-md-6 col-xs-12">
                 <div class='row mb-3'>
@@ -54,36 +53,18 @@
                         <h2 class='title'><span class='highlight'>Recent Blogs</span></h2>
                     </div>
                 </div>
-                <div class='row article1'>
-                    <div class='card p-0'>
-                        <img src='{{ url('user_assets/images/articleimage1.png')}}' class='img-fluid' alt=''/>
-                        <div class='card-body'>
-                            <p class='mt-4'>3/April/2023, <span class='highlight'>Admin</span></p>
-                            <h3 class='subtitle'><span class='highlight'>Business Mission Or Essen...</span></h3>
-                            <p>We believe in study of mission is very important. Research on the history ...</p>
+                @foreach($RecentBlog as $item)
+                    <div class='row article1'>
+                        <div class='card p-0'>
+                            <img src='{{ url($item->blog_image_thumb)}}' class='img-fluid' alt=''/>
+                            <div class='card-body'>
+                                <p class='mt-4'>3/April/2023, <span class='highlight'>Admin</span></p>
+                                <h3 class='subtitle'><span class='highlight'>{{ Illuminate\Support\Str::limit($item->blog_name, 30) }}</span></h3>
+                                <p>{{ Illuminate\Support\Str::limit($item->blog_short_description, 30) }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class='row article1'>
-                    <div class='card p-0'>
-                        <img src='{{ url('user_assets/images/articleimage2.png')}}' class='img-fluid' alt=''/>
-                        <div class='card-body'>
-                            <p class='mt-4'>3/April/2023, <span class='highlight'>Admin</span></p>
-                            <h3 class='subtitle'><span class='highlight'>Business Mission Or Essen...</span></h3>
-                            <p>We believe in study of mission is very important. Research on the history ...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class='row article1'>
-                    <div class='card p-0'>
-                        <img src='{{ url('user_assets/images/blog6.png')}}' class='img-fluid' alt=''/>
-                        <div class='card-body'>
-                            <p class='mt-4'>3/April/2023, <span class='highlight'>Admin</span></p>
-                            <h3 class='subtitle'><span class='highlight'>Business Mission Or Essen...</span></h3>
-                            <p>We believe in study of mission is very important. Research on the history ...</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
                 <div class='row mb-3'>
                     <div class='article-heading'>
                         <h2 class='title'><span class='highlight'>Twitter Feed</span></h2>

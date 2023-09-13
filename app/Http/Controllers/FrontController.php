@@ -27,6 +27,8 @@ use App\Models\MissionVision;
 use App\Models\OurPhilosophy;
 use App\Models\QuestionAnswer;
 use App\Models\LastAboutBanner;
+use App\Models\OfficeAddress;
+use App\Models\Blog;
 
 
 // use Location;
@@ -73,17 +75,21 @@ class FrontController extends Controller
 
     public function blog_and_news()
     {
-        return view('user_panel.blog_and_news');
+        $Blog = Blog::get();
+        return view('user_panel.blog_and_news', compact('Blog'));
     }
 
-    public function blog_details()
+    public function blog_details($slug)
     {
-        return view('user_panel.blog_detail');
+        $Blog = Blog::where('slug',$slug)->first();
+        $RecentBlog = Blog::orderBy('created_at', 'desc')->limit(3)->get();
+        return view('user_panel.blog_detail', compact('Blog', 'RecentBlog'));
     }
 
     public function contact()
     {
-        return view('user_panel.contact');
+        $OfficeAddress = OfficeAddress::first();
+        return view('user_panel.contact',compact('OfficeAddress'));
     }
 
     public function get_services_for_home(Request $request)
@@ -134,8 +140,6 @@ class FrontController extends Controller
 
     public function contact_us(Request $request)
     {
-        // dd($request->all());
-
         $data = array();
 
         if($request->name)
@@ -158,8 +162,6 @@ class FrontController extends Controller
         {
             $data['text'] = $request->text;
         }
-
-        // dd($data);
 
         $ContactUs = ContactUs::create($data);
 

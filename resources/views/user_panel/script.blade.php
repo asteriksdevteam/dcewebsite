@@ -19,6 +19,26 @@
         },
     });
 
+    $('.philosphy-carousel').owlCarousel({
+        loop: false,
+        autoplay: false,
+        autoplayTimeout: 5000,
+        margin: 20,
+        nav: false,
+        dots: true,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            768: {
+                items: 1,
+            },
+            1000: {
+                items: 1,
+            },
+        },
+    })
+
     $('.testimonialcarousel').owlCarousel({
         loop: false,
         autoplay: false,

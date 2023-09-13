@@ -10,6 +10,7 @@ use App\Models\MissionVision;
 use App\Models\OurPhilosophy;
 use App\Models\QuestionAnswer;
 use App\Models\LastAboutBanner;
+use App\Models\OfficeAddress;
 
 class AboutUsController extends Controller
 {
@@ -370,5 +371,24 @@ class AboutUsController extends Controller
         $LastAboutBanner = LastAboutBanner::where('id',$request->id)->update($data);
 
         return redirect()->back()->with('success', 'Updated Successfully!');
+    }
+
+    public function edit_contact_us()
+    {
+        $OfficeAddress = OfficeAddress::first();
+        return view('admin_panel.contact_us', compact('OfficeAddress'));
+    }
+
+    public function contact_us_address(Request $request)
+    {
+        $validated = $request->validate([
+            'contact_Us' => 'required|min:30|max:1000',
+        ]);
+
+        $OfficeAddress = OfficeAddress::create([
+            'office_detail' => $request->contact_Us,
+        ]);
+
+        return redirect()->back()->with('success', 'Update Successfully!');
     }
 }

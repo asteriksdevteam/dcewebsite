@@ -809,7 +809,100 @@
             });
             
         //This script for About Us Data End
-        
+
+        //This script for blog data start
+            function validateDropdown() {
+                var dropdown = document.getElementById('blog_Category');
+                if (dropdown.value === 'Select') {
+                    alert('Please select a category.');
+                    return false;
+                }
+                return true;
+            }
+
+            $('#blog_images').on('change', function(event) {
+                var selectedImage = event.target.files[0];
+
+                if (selectedImage) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#blog_images_show').html('<img src="' + e.target.result + '">');
+                };
+
+                reader.readAsDataURL(selectedImage);
+                } else {
+                $('#blog_images_show').empty();
+                }
+            });
+
+            $('#blog_image_thumb').on('change', function(event) {
+                var selectedImage = event.target.files[0];
+
+                if (selectedImage) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#blog_image_thumb_show').html('<img src="' + e.target.result + '">');
+                };
+
+                reader.readAsDataURL(selectedImage);
+                } else {
+                    $('#blog_image_thumb_show').empty();
+                }
+            });
+
+            $('#edit_edit_blog_images').on('change', function(event) {
+                var selectedImage = event.target.files[0];
+
+                if (selectedImage) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#edit_blog_images_show').html('<img width="100px" src="' + e.target.result + '">');
+                };
+
+                reader.readAsDataURL(selectedImage);
+                } else {
+                    $('#edit_blog_images_show').empty();
+                }
+            });
+
+            $('#edit_blog_image_thumb').on('change', function(event) {
+                var selectedImage = event.target.files[0];
+
+                if (selectedImage) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#edit_blog_image_thumb_show').html('<img width="100px" src="' + e.target.result + '">');
+                };
+
+                reader.readAsDataURL(selectedImage);
+                } else {
+                    $('#edit_blog_image_thumb_show').empty();
+                }
+            });
+
+            $(document).ready(function () {
+                $("#slug").on('input', function () {
+                    var text = $(this).val();
+                    var maxLength = 30;
+                    if (text.length > maxLength) {
+                        $("#error").text("Slug Character must be less then " + maxLength);
+                    } else {
+                        $("#error").text("");
+                    }
+                });
+            });
+
+            $(document).ready(function () {
+                $('#meta_keyword').select2({
+                    tags: true,
+                    tokenSeparators: [',', '\n'],
+                });
+            });
+        //This script for blog data end
 
     });
 </script>
