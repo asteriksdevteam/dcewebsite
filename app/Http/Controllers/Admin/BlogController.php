@@ -105,8 +105,6 @@ class BlogController extends Controller
     {
         $Blog = Blog::where('id',$id)->first();
         $keywordList = explode(',', $Blog->meta_keyword);
-        // $keywordList = $Blog->meta_keyword;
-        // dd($keywordList);
         $Category = Category::get();
         return view('admin_panel.blogs.edit', compact('Category','Blog','keywordList'));
     }

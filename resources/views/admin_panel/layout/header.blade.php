@@ -92,6 +92,12 @@
                         <span>Contact Us</span>
                     </a>
                 </li>
+                <li class="{{ $_SERVER['REQUEST_URI'] === '/add_meta_tags' ? 'active' : '' }}">
+                    <a href="{{ url('add_meta_tags') }}">
+                        <i class="simple-icon-tag"></i>
+                        <span>Meta Tags</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

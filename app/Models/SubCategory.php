@@ -16,6 +16,7 @@ class SubCategory extends Model
 
     protected $fillable = [
         "category_id",
+        "slug",
         "sub_category_name",
     ];
     public function Category(): HasOne

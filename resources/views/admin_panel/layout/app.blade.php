@@ -66,16 +66,6 @@
     <script src="{{url('admin_assets/js/vendor/mousetrap.min.js')}}"></script>
     <script src="{{url('admin_assets/js/dore.script.js')}}"></script>
     <script src="{{url('admin_assets/js/scripts.js')}}"></script>
-    <script src="https://cdn.tiny.cloud/1/ejwiq0fa3s54yoz9v656kph21qpwow99t53n9745zkkbszq2/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-            selector: '#mytextarea',
-            statusbar: false,
-            plugin: 'a_tinymce_plugin',
-            a_plugin_option: true,
-            a_configuration_option: 400
-        });
-    </script>
 @include('admin_panel.layout.script')
 
 </body>

@@ -601,10 +601,12 @@
                 var id = $(this).data("id");
                 var category_name = $(this).data("category_name");
                 var sub_category_name = $(this).data("sub_category_name");
-                console.log(id, category_name, sub_category_name);
+                var edit_slug = $(this).data("slug");
+                console.log(id, category_name,edit_slug ,sub_category_name);
 
                 $("#id").val(id);
                 $("#edit_sub_category_name").val(sub_category_name);
+                $("#edit_slug").val(edit_slug);
                 $("#edit_Category_name").val(category_name);
 
             });
@@ -904,5 +906,20 @@
             });
         //This script for blog data end
 
+
+        $(document).on('click','.edit_tag',function()
+        {
+                var id = $(this).data("id");
+                var page  = $(this).data("page");
+                var meta_title  = $(this).data("meta_title");
+                var meta_keyword  = $(this).data("meta_keyword");
+                var meta_description  = $(this).data("meta_description");
+
+                console.log(id, page, meta_title, meta_keyword, meta_description);
+                $("#id").val(id);
+                $("#edit_page").val(page);
+                $("#edit_meta_title").val(meta_title);
+                $("#edit_meta_description").val(meta_description);
+        })
     });
 </script>

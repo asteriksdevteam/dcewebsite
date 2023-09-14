@@ -80,7 +80,7 @@
                                         <a href="{{ url('delete_sub_category/'.$item->id) }}" class="btn btn-danger btn-sm">Delete</a>
                                         
                                         <button type="button" class="btn btn-warning btn-sm edit_sub_category" 
-                                        data-id="{{$item->id}}" data-category_name="{{$item->category_id}}" data-sub_category_name="{{ $item->sub_category_name }}" data-toggle="modal" data-target=".bd-example-modal-lg-edit">Edit</button>    
+                                        data-id="{{$item->id}}" data-slug="{{ $item->slug }}" data-category_name="{{$item->category_id}}" data-sub_category_name="{{ $item->sub_category_name }}" data-toggle="modal" data-target=".bd-example-modal-lg-edit">Edit</button>    
                                     </td>
                                 </tr>
                                 @endforeach
@@ -107,7 +107,17 @@
                                 <input type="text" class="form-control" required name="sub_category_name" id="sub_category_name">
                                 <span>Sub Category</span>
                             </div>
+
                             <br>
+
+                            <div class="form-group has-float-label">
+                                <input type="text" name="slug" id="slug" maxlength="30" required class="form-control" value="{{ old('slug') }}">
+                                <span>Slug</span>                    
+                            </div>
+                            <p id="error" style="color: red;"></p> 
+
+                            <br>
+
                             <div class="form-group has-float-label">
                                 <select class="form-control select2-single" name="Category_name" id="Category_name" required data-width="100%">
                                     <option></option>
@@ -117,7 +127,9 @@
                                 </select>
                                 <span>Category</span>
                             </div>
-                            <button class="btn btn-primary" type="submit">Sign up</button>
+
+                            <button class="btn btn-primary" type="submit">Submit</button>
+
                         </form>
                     </div>
                 </div>
@@ -142,6 +154,16 @@
                                 <input type="text" class="form-control" required name="edit_sub_category_name" id="edit_sub_category_name">
                                 <span>Sub Category</span>
                             </div>
+
+                            <br>
+
+                            <div class="form-group has-float-label">
+                                <input type="text" name="slug" id="edit_slug" maxlength="30" required class="form-control" value="{{ old('slug') }}">
+                                <span>Slug</span>                    
+                            </div>
+                            <p id="error" style="color: red;"></p> 
+
+                            <br>
 
                             <div class="form-group has-float-label">
                                 <select class="form-control" name="edit_Category_name" id="edit_Category_name">

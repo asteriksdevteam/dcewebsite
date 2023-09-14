@@ -178,12 +178,15 @@
 
     })
 
+
     $(document).on('click','.contact_us', function() {
         var name = $('#contact_name').val();
         var email = $('#contact_email').val();
         var phone = $('#contact_phone').val();
-        var subject = $('#contact_subject').val();
+        var subject = $('#categories').val();
         var text = $('#contact_text').val();
+
+
         $.ajaxSetup({
             headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -211,11 +214,10 @@
                 $('#contact_name').val("");
                 $('#contact_email').val("");
                 $('#contact_phone').val("");
-                $('#contact_subject').val("");
+                $('#categories').val("select");
                 $('#contact_text').val("");
             }
         });
-
     })
     
     $(document).on('click','.service_detail_name_li', function() {

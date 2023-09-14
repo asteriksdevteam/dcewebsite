@@ -32,7 +32,6 @@ Route::get('/clear', function() {
     }
 });
 
-
 Route::get('demo',function()
 {
     return view('welcome');
@@ -138,6 +137,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('edit_blog/{id}',[BlogController::class,'edit_blog'])->name('edit_blog');
     Route::post('update_blog',[BlogController::class,'update'])->name('update_blog');
     Route::get('delete_blog/{id}',[BlogController::class,"delete_blog"])->name('delete_blog');
+
+    Route::get('add_meta_tags',[FrontController::class,'add_meta_tags'])->name('add_meta_tags');
+    Route::post('create_meta_tag',[FrontController::class,'create_meta_tag'])->name('create_meta_tag');
+    Route::get('edit_meta_tag/{id}',[FrontController::class,'edit_meta_tag'])->name('edit_meta_tag');
+    Route::post('update_meta_tag',[FrontController::class,'update_meta_tag'])->name('update_meta_tag');
+    Route::get('delete_meta_tag/{id}',[FrontController::class,'delete_meta_tag'])->name('delete_meta_tag');
 });
 
 
@@ -164,6 +169,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::post('contact_us',[FrontController::class,"contact_us"]);
 
 Route::get('get_header_services',[FrontController::class,'get_header_services']);
-Route::get('service_detail_for_user/{id}',[FrontController::class,'service_detail_for_user']);
+Route::get('service_detail_for_user/{slug}',[FrontController::class,'service_detail_for_user'])->name('service-details');
 
 Route::post('get_work_specific_service',[FrontController::class,'get_work_specific_service']);

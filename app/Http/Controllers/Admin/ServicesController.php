@@ -10,6 +10,7 @@ use App\Models\SubCategoryItem;
 use App\Models\SubCategoryItemImages;
 use App\Models\ServiceDetail;
 use App\Models\ServiceDetailProcess;
+use Illuminate\Support\Str;
 
 class ServicesController extends Controller
 {
@@ -126,6 +127,7 @@ class ServicesController extends Controller
     {
         $SubCategory = SubCategory::create([
             'category_id' => $request->Category_name,
+            'slug' => Str::slug($request->slug),
             'sub_category_name' => $request->sub_category_name,
         ]);
 
@@ -137,6 +139,7 @@ class ServicesController extends Controller
 
         $SubCategory = SubCategory::where('id',$request->id)->update([
             'category_id' => $request->edit_Category_name,
+            'slug' => Str::slug($request->slug),
             'sub_category_name' => $request->edit_sub_category_name,
         ]);
 
@@ -323,6 +326,9 @@ class ServicesController extends Controller
     public function create_service_detail(Request $request)
     {
         $validatedData = $request->validate([
+            'meta_title' => 'required',
+            'meta_keyword' => 'required',
+            'meta_description' => 'required',
             'sub_category' => 'required',
             'banner_heading' => 'required',
             'banner_content' => 'required',
@@ -335,6 +341,18 @@ class ServicesController extends Controller
 
         $ServiceDetail = array();
 
+        if($request->meta_title)
+        {
+            $ServiceDetail['meta_title'] = $request->meta_title;
+        }
+        if($request->meta_keyword)
+        {
+            $ServiceDetail['meta_keyword'] = implode(',',$request->meta_keyword);
+        }
+        if($request->meta_description)
+        {
+            $ServiceDetail['meta_description'] = $request->meta_description;
+        }
         if($request->sub_category)
         {
             $ServiceDetail['sub_category'] = $request->sub_category; 
@@ -381,12 +399,17 @@ class ServicesController extends Controller
 
         $SubCategory = SubCategory::whereNotIn('id', $all_selected_sub_category)->get();
 
-        return view('admin_panel.services.service_detail.edit',compact('SubCategory','EditServiceDetail'));
+        $explode_meta_keyword = explode(',',$EditServiceDetail->meta_keyword);
+
+        return view('admin_panel.services.service_detail.edit',compact('SubCategory','EditServiceDetail', 'explode_meta_keyword'));
     }
 
     public function update_service_details(Request $request)
     {
         $validatedData = $request->validate([
+            'meta_title' => 'required',
+            'meta_keyword' => 'required',
+            'meta_description' => 'required',
             'sub_category' => 'required',
             'banner_heading' => 'required',
             'banner_content' => 'required',
@@ -398,6 +421,18 @@ class ServicesController extends Controller
 
         $ServiceDetail = array();
 
+        if($request->meta_title)
+        {
+            $ServiceDetail['meta_title'] = $request->meta_title;
+        }
+        if($request->meta_keyword)
+        {
+            $ServiceDetail['meta_keyword'] = implode(',',$request->meta_keyword);
+        }
+        if($request->meta_description)
+        {
+            $ServiceDetail['meta_description'] = $request->meta_description;
+        }
         if($request->sub_category)
         {
             $ServiceDetail['sub_category'] = $request->sub_category; 
@@ -442,7 +477,7 @@ class ServicesController extends Controller
 
         return redirect()->back()->with('success', 'Servies Details Updated Successfully!');
     }
-
+    
     public function delete_service_detail($id)
     {        
         $ServiceDetailProcess = ServiceDetailProcess::where('service_detail_id',$id)->get();

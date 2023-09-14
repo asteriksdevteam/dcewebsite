@@ -15,6 +15,9 @@ class ServiceDetail extends Model
     protected $table = "service_detail";
 
     protected $fillable = [
+        "meta_title",
+        "meta_keyword",
+        "meta_description",
         "sub_category",
         "banner_heading",
         "banner_content",

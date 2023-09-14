@@ -32,7 +32,7 @@ return [
     */
 
     'session' => env('SESSION_DRIVER', 'file'),
-    'lifetime' => 1,
+    'lifetime' => 60,
     'expire_on_close' => true,
 
     /*

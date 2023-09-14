@@ -21,6 +21,17 @@
     {
         max-width: 300px !important;
     }
+    .select2
+    {
+    width: 100% !important;
+    height: 50px;
+    }
+    .select2-container .select2-selection--multiple
+    {
+        min-height: 40px !important;
+        border: 1px solid #d7d7d7 !important;
+        border-radius: 0.1rem !important;
+    }
 </style>
 
 <main>
@@ -77,6 +88,25 @@
                                 @error('sub_category')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror                                
+                            </div>
+
+                            <br>
+                            <h2>Add Meta Tags</h2>
+                            <hr>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Meta Title</label>
+                                <input type="text" name="meta_title" class="form-control" id="meta_title" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Meta Keyword</label>
+                                <select id="meta_keyword" class="form-control" multiple="multiple" name="meta_keyword[]" required></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Meta Description</label>
+                                <textarea type="text" name="meta_description" rows="5" class="form-control" id="meta_description" required></textarea>
                             </div>
 
                             <br>

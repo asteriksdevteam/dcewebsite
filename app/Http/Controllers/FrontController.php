@@ -29,9 +29,8 @@ use App\Models\QuestionAnswer;
 use App\Models\LastAboutBanner;
 use App\Models\OfficeAddress;
 use App\Models\Blog;
-
-
 // use Location;
+use App\Models\MetaTag;
 
 class FrontController extends Controller
 {
@@ -51,8 +50,12 @@ class FrontController extends Controller
         $OurServicesHomeFirst = OurServicesHome::first();
         $SubCategoryItem = SubCategoryItem::with('SubCategoryItemImages')->get();
         $SubCategoryItemImages = SubCategoryItemImages::get();
-                
-        return view('user_panel.index',compact('HomeBanner','SubCategoryItem','SubCategoryItemImages','OurServicesHomeFirst','OurServicesHome' , 'HomeBannerImages', 'HomeTechnologies', 'HomeContentOne', 'HomeContentSecond', 'HomeContentThird', 'LoyalCustomers','LoyalCustomersImages','HomeContentFourth','Testimonails'));
+        $Category = Category::get();
+        $MetaTag = MetaTag::get();
+
+        $GetMetaTags = $_SERVER['REQUEST_URI'] === '/' ? MetaTag::where('page','home')->first() : '';
+
+        return view('user_panel.index',compact('HomeBanner','GetMetaTags','Category','SubCategoryItem','SubCategoryItemImages','OurServicesHomeFirst','OurServicesHome' , 'HomeBannerImages', 'HomeTechnologies', 'HomeContentOne', 'HomeContentSecond', 'HomeContentThird', 'LoyalCustomers','LoyalCustomersImages','HomeContentFourth','Testimonails'));
     }
 
     public function about_us()
@@ -65,7 +68,11 @@ class FrontController extends Controller
         $OurPhilosophy = OurPhilosophy::first();
         $QuestionAnswer = QuestionAnswer::get();
         $LastAboutBanner = LastAboutBanner::first();
-        return view('user_panel.aboutus',compact('LastAboutBanner', 'AboutUsBanner','QuestionAnswer','OurPhilosophy','WhoWeAre','MissionVision','LoyalCustomers','LoyalCustomersImages'));
+
+        $GetMetaTags = $_SERVER['REQUEST_URI'] === '/about_us' ? MetaTag::where('page','about-us')->first() : '';
+        
+
+        return view('user_panel.aboutus',compact('LastAboutBanner', 'GetMetaTags','AboutUsBanner','QuestionAnswer','OurPhilosophy','WhoWeAre','MissionVision','LoyalCustomers','LoyalCustomersImages'));
     }
 
     public function service()
@@ -75,21 +82,25 @@ class FrontController extends Controller
 
     public function blog_and_news()
     {
+        $GetMetaTags = $_SERVER['REQUEST_URI'] === '/blog_and_news' ? MetaTag::where('page','blog_and_news')->first() : '';
         $Blog = Blog::get();
-        return view('user_panel.blog_and_news', compact('Blog'));
+        return view('user_panel.blog_and_news', compact('Blog','GetMetaTags'));
     }
 
     public function blog_details($slug)
     {
         $Blog = Blog::where('slug',$slug)->first();
+        $BlogSlug = $Blog->slug;
+        // dd($Blog->meta_title);
         $RecentBlog = Blog::orderBy('created_at', 'desc')->limit(3)->get();
-        return view('user_panel.blog_detail', compact('Blog', 'RecentBlog'));
+        return view('user_panel.blog_detail', compact('Blog', 'BlogSlug','RecentBlog'));
     }
 
     public function contact()
     {
+        $GetMetaTags = $_SERVER['REQUEST_URI'] === '/contact' ? MetaTag::where('page','contact-us')->first() : '';
         $OfficeAddress = OfficeAddress::first();
-        return view('user_panel.contact',compact('OfficeAddress'));
+        return view('user_panel.contact',compact('OfficeAddress','GetMetaTags'));
     }
 
     public function get_services_for_home(Request $request)
@@ -183,7 +194,7 @@ class FrontController extends Controller
             $html .= '<ul>';
             if ($item->SubCategory->count() > 0) {
                 foreach ($item->SubCategory as $subcategory) {
-                    $html .= '<li><a href="'. url('service_detail_for_user/'.$subcategory->id) .'">' . $subcategory->sub_category_name . '</a></li>';
+                    $html .= '<li><a href="'. url('service_detail_for_user/'.$subcategory->slug) .'">' . $subcategory->sub_category_name . '</a></li>';
                 }
             } else {
                 $html .= '<li>No subcategories available.</li>';
@@ -196,9 +207,9 @@ class FrontController extends Controller
         return response()->json($html);
     }
 
-    public function service_detail_for_user($id)
+    public function service_detail_for_user($slug)
     {
-        $SubCategory = SubCategory::with('SubCategoryItem.SubCategoryItemImages')->where('id',$id)->first();
+        $SubCategory = SubCategory::with('SubCategoryItem.SubCategoryItemImages')->where('slug',$slug)->first();
 
         $SubCategoryItem = SubCategoryItem::with('SubCategoryItemImages')->where('sub_category_id',$SubCategory->id)->get();
 
@@ -208,11 +219,15 @@ class FrontController extends Controller
 
         $ServiceDetail = ServiceDetail::where('sub_category',$SubCategory->id)->first();
 
+        $SubCategorySlug = $SubCategory->slug;
+
+        // dd($ServiceDetail->meta_title, $ServiceDetail->meta_keyword, $ServiceDetail->meta_description);
+
         $ServiceDetailProcess = ServiceDetailProcess::where('service_detail_id',$ServiceDetail->id)->get();
 
-        return view('user_panel.service', compact('ServiceDetail', 'SubCategoryItemImages' ,'ServiceDetailProcess','SubCategoryItem'));
-    }
+        return view('user_panel.service', compact('ServiceDetail','SubCategorySlug' ,'SubCategoryItemImages' ,'ServiceDetailProcess','SubCategoryItem'));
 
+    }
     public function get_work_specific_service(Request $request)
     {
         $SubCategoryItemImages = SubCategoryItemImages::where('sub_categories_items_id',$request->id)->get();
@@ -230,5 +245,65 @@ class FrontController extends Controller
         }
 
         return response()->json(['image' => $image]);
+    }
+
+    public function add_meta_tags()
+    {
+        $MetaTag = MetaTag::get();
+        return view('admin_panel.meta', compact('MetaTag'));
+    }
+
+    public function create_meta_tag(Request $request)
+    {
+        $MetaTag = MetaTag::create([
+            'page' => $request->page,
+            'meta_title' => $request->meta_title,
+            'meta_keyword' => implode(',',$request->meta_keyword),
+            'meta_description' => $request->meta_description,
+        ]);
+
+        return redirect()->back()->with('success', 'Created Successfully!'); 
+    }
+
+    public function edit_meta_tag($id)
+    {
+        $MetaTag = MetaTag::where('id',$id)->first();
+        $meta_keyword = explode(',',$MetaTag->meta_keyword);
+        
+        return view('admin_panel.edit_meta', compact('MetaTag','meta_keyword')); 
+    }
+
+    public function update_meta_tag(Request $request)
+    {
+        $data = array();
+
+        if($request->page)
+        {
+            $data['page'] = $request->page;
+        }
+        if($request->meta_title)
+        {
+            $data['meta_title'] = $request->meta_title;
+        }
+        if($request->meta_keyword)
+        {
+            $data['meta_keyword'] = implode(',',$request->meta_keyword);
+        }
+        if($request->meta_description)
+        {
+            $data['meta_description'] = $request->meta_description;
+        }
+
+        $MetaTag = MetaTag::where('id',$request->id)->update($data);
+
+        return redirect()->back()->with('success', 'Created Successfully!'); 
+    }
+
+    public function delete_meta_tag($id)
+    {
+        $MetaTag = MetaTag::where('id',$id)->first();
+        $MetaTag->delete();
+
+        return redirect()->back()->with('error', 'Deleted Successfully!'); 
     }
 }

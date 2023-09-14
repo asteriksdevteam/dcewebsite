@@ -31,27 +31,37 @@
             <div class="col-xl-5 col-lg-6 col-md-6 col-xs-12">
                 <div class='form'>
                     <h4 class='subtitle2'>get in touch.</h4>
-                    <form>
+                    <form id="contactus">
                         @csrf
                         <div class='row gx-3'>
                             <div class="col-lg-6" >
                                 <input type="text" placeholder='name*' name="contact_name" id="contact_name" class='form-control' required/>
+                                <span class="text-danger error-message" id="name-error"></span>
                             </div>
                             <div class="col-lg-6" >
-                                <input type="text" placeholder='email*' name="contact_email" id="contact_email" class='form-control' required/>
+                                <input type="email" placeholder='email*' name="contact_email" id="contact_email" class='form-control' required/>
+                                <span class="text-danger error-message" id="email-error"></span>
                             </div>
                         </div>
                         <div class='row mt-3 gx-3'>
                             <div class="col-lg-6" >
-                                <input type="text" placeholder='phone*' name="contact_phone" id="contact_phone" class='form-control' required/>
+                                <input type="number" placeholder='phone*' name="contact_phone" id="contact_phone" class='form-control' required/>
+                                <span class="text-danger error-message" id="phone-error"></span>
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" placeholder='subject*' name="contact_subject" id="contact_subject" class='form-control' required/>
+                                <select name="categories" id="categories" class='form-control'>
+                                    <option disabled selected>Select</option>
+                                    @foreach($Category as $item)
+                                        <option value="{{ $item->id }}">{{ $item->category_name }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger error-message" id="categories-error"></span>
                             </div>
                         </div>
                         <div class='row mt-3 gx-3'>
                             <div class="col-lg-12">
-                                <textarea class='form-control' name="contact_text" rows='10' id="contact_text" placeholder='messages*' required></textarea> 
+                                <textarea class='form-control' name="contact_text" rows='10' id="contact_text" placeholder='summery*' required></textarea> 
+                                <span class="text-danger error-message" id="text-error"></span>
                             </div>
                         </div>
                         <button type='button' class='submit contact_us'>submit</button>
