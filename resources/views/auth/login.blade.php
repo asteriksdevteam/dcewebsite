@@ -3,16 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Dore jQuery</title>
+    <title>DCE Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link rel="stylesheet" href="{{url('admin_assets/font/iconsmind-s/css/iconsminds.css')}}" />
-    <link rel="stylesheet" href="{{url('admin_assets/font/simple-line-icons/css/simple-line-icons.css')}}" />
+    <link rel="stylesheet" href="{{url('public/admin_assets/font/iconsmind-s/css/iconsminds.css')}}" />
+    <link rel="stylesheet" href="{{url('public/admin_assets/font/simple-line-icons/css/simple-line-icons.css')}}" />
 
-    <link rel="stylesheet" href="{{url('admin_assets/css/vendor/bootstrap.min.css')}}" />
-    <link rel="stylesheet" href="{{url('admin_assets/css/vendor/bootstrap.rtl.only.min.css')}}" />
-    <link rel="stylesheet" href="{{url('admin_assets/css/vendor/bootstrap-float-label.min.css')}}" />
-    <link rel="stylesheet" href="{{url('admin_assets/css/main.css')}}" />
+    <link rel="stylesheet" href="{{url('public/admin_assets/css/vendor/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{url('public/admin_assets/css/vendor/bootstrap.rtl.only.min.css')}}" />
+    <link rel="stylesheet" href="{{url('public/admin_assets/css/vendor/bootstrap-float-label.min.css')}}" />
+    <link rel="stylesheet" href="{{url('public/admin_assets/css/main.css')}}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.digicontentexperts.com/public/user_assets/images/fav.png">
 </head>
 
 <body class="background show-spinner no-footer">
@@ -24,19 +25,16 @@
                     <div class="card auth-card">
                         <div class="position-relative image-side ">
 
-                            <p class=" text-white h2">MAGIC IS IN THE DETAILS</p>
-
+                            <p class=" text-white h2">DCE Website CMS Portal</p>
+                            <br>
+                            <br>
                             <p class="white mb-0">
-                                Please use your credentials to login.
-                                <br>If you are not a member, don't try to 
-                                <a href="#" class="white">register</a>.
-                                <br>
-                                heheheheheh
+                                At Digi Content Experts, we're more than just another digital marketing agency. We embrace innovative, forward thinking strategies, ensuring your brand not only thrive but lead in their industry. Are you ready to begin?
                             </p>
                         </div>
                         <div class="form-side">
 
-                            <img src='{{url('user_assets/images/logo2.png')}}' />
+                            <img src='{{asset('user_assets/images/main-dce-logo.png')}}' width="150px" alt="logo" />
                             <br><br><br>
                             <h6 class="mb-4">Login</h6>
                             <form method="POST" action="{{ route('login') }}">
@@ -62,7 +60,7 @@
                                 @enderror
 
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <a href="#">Forget password?</a>
+                                    <a href="#">&nbsp;</a>
                                     <button class="btn btn-primary btn-lg btn-shadow" type="submit">LOGIN</button>
                                 </div>
                             </form>
@@ -72,10 +70,10 @@
             </div>
         </div>
     </main>
-    <script src="{{url('admin_assets/js/vendor/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{url('admin_assets/js/vendor/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{url('admin_assets/js/dore.script.js')}}"></script>
-    <script src="{{url('admin_assets/js/scripts.js')}}"></script>
+    <script src="{{url('public/admin_assets/js/vendor/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{url('/js/vendor/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{url('public/admin_assets/js/dore.script.js')}}"></script>
+    <script src="{{url('public/admin_assets/js/scripts.js')}}"></script>
 </body>
 
 </html>

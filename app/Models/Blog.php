@@ -25,6 +25,7 @@ class Blog extends Model
         'blog_short_description',
         'blog_description',
         'status',
+        'date',
     ];
 
     public function Category(): HasOne

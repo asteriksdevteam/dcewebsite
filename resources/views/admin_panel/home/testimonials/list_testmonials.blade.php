@@ -84,7 +84,7 @@
                                                 <div class="row justify-content-left mt-3 mb-3">
                                                     <div class="col-lg-12 col-md-6 col-xs-12">
                                                         <div class="card mcardd" id="">
-                                                            <img src="{{ $item->image }}" alt="" srcset="">
+                                                            <img src="{{ asset($item->image) }}" alt="dce-image" srcset="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -218,7 +218,7 @@
                                 <div class="row justify-content-left mt-3 mb-3">
                                     <div class="col-lg-12 col-md-6 col-xs-12">
                                         <div class="card mcard" id="edit_testimonial_images_show">
-                                            <img id="testimonialImage" src="" alt="" srcset="" width="20%">
+                                            <img id="testimonialImage" src="" alt="dce-image" srcset="" width="20%">
                                         </div>
                                     </div>
                                 </div>

@@ -7,9 +7,18 @@ use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Support\Str;
+use App\Models\BlogFeed;
+use Carbon\Carbon;
 
 class BlogController extends Controller
 {
+    public function __construct() 
+    {
+        $this->middleware('role:Blogs Manager|Super Admin', ['only' => [
+            'index', 'create', 'create_blog_db', 'edit_blog', 'update', 'delete_blog', 'blogs_feed', 'update_blog_feed',
+        ]]);
+    }
+
     public function singleImage($image,$folder)
     {
         if ($image->isValid()) 
@@ -47,6 +56,7 @@ class BlogController extends Controller
             'status' => 'required',
             'blog_images' => 'required',
             'blog_image_thumb' => 'required',
+            'date' => 'required',
         ]);
 
         $data = array();
@@ -95,6 +105,11 @@ class BlogController extends Controller
         {
             $data['blog_image_thumb'] = $this->singleImage($request->blog_image_thumb, 'blogsImages');
         }
+        if($request->date)
+        {
+            $date = Carbon::createFromFormat('Y-m-d\TH:i', $request->date)->format('Y-m-d H:i:s');
+            $data['date'] = $date;
+        }
 
         $Blog = Blog::create($data);
 
@@ -106,6 +121,7 @@ class BlogController extends Controller
         $Blog = Blog::where('id',$id)->first();
         $keywordList = explode(',', $Blog->meta_keyword);
         $Category = Category::get();
+        
         return view('admin_panel.blogs.edit', compact('Category','Blog','keywordList'));
     }
 
@@ -157,7 +173,12 @@ class BlogController extends Controller
         {
             $data['blog_image_thumb'] = $this->singleImage($request->edit_blog_image_thumb, 'blogsImages');
         }
-
+        if($request->date)
+        {
+            $date = Carbon::createFromFormat('Y-m-d\TH:i', $request->date)->format('Y-m-d H:i:s');
+            $data['date'] = $date;
+        }
+        
         $Blog = Blog::where('id',$request->id)->update($data);
 
         return redirect()->back()->with('success', 'Update Successfully Successfully!');
@@ -169,5 +190,24 @@ class BlogController extends Controller
         $Blog->delete();
 
         return redirect()->back()->with('message', 'Blog Deleted Successfully!');
+    }
+
+    public function blogs_feed()
+    {
+        $BlogFeed = BlogFeed::first();
+        return view("admin_panel.blogs.blogs_feed", compact('BlogFeed'));
+    }
+
+    public function update_blog_feed(Request $request)
+    {
+        $validated = $request->validate([
+            'blog_feed' => 'required|min:50',
+        ]);
+
+        $BlogFeed = BlogFeed::where('id',$request->id)->update([
+            "blog_feed" => $request->blog_feed,
+        ]);
+
+        return redirect()->back()->with('success', 'Blog Created Successfully!');
     }
 }

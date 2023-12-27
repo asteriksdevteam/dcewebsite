@@ -18,6 +18,15 @@ use App\Models\OurServicesHome;
 
 class HomeController extends Controller
 {
+    public function __construct() 
+    {
+        $this->middleware('role:Home Manager|Super Admin', ['only' => [
+            'home_banner', 'update_home_banner', 'delete_home_banner_images', 'home_technologies', 'update_home_technologies', 'home_content', 'update_home_content_one', 'home_content_second',
+            'update_home_content_second', 'home_content_third', 'update_home_content_third', 'loyal_customers', 'update_loyal_customers', 'delete_home_loyal_customers_images',
+            'home_content_fourth', 'update_home_content_fourth', 'home_testimonials', 'add_testimonials_to_db','delete_testimonials', 'update_testimonails', 'home_our_service',
+            'create_service_for_home_page', 'update_service_for_home_page', 'delete_our_services'
+        ]]);
+    }
     public function singleImage($image,$folder)
     {
         if ($image->isValid()) 
@@ -545,5 +554,34 @@ class HomeController extends Controller
         $OurServicesHome = OurServicesHome::create($data);
 
         return redirect()->back()->with('success', 'Created Successfully!');
+    }
+    
+    public function update_service_for_home_page(Request $request)
+    {
+        $data = array();
+
+        if($request->service_name)
+        {
+            $data['name'] = $request->service_name;
+        }
+        if($request->service_description)
+        {
+            $data['description'] = $request->service_description;
+        }
+        if($request->images)
+        {
+            $data['image'] = $this->singleImage($request->images,"home_services_images");
+        }
+
+        $OurServicesHome = OurServicesHome::where('id',$request->edit_service_id)->update($data);
+
+        return redirect()->back()->with('success', 'Updated Successfully!');
+    }
+
+    public function delete_our_services($id)
+    {
+        $OurServicesHome = OurServicesHome::where('id',$id)->first();
+        $OurServicesHome->delete();
+        return redirect()->back()->with('message', 'Deleted Successfully!');
     }
 }

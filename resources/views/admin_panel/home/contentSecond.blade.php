@@ -1,4 +1,4 @@
-@extends('admin_panel.layout.app');
+@extends('admin_panel.layout.app')
 @section('content')
 
 <style>
@@ -24,6 +24,10 @@
      {
          font-size: 20px;
      }
+         .tox-notifications-container 
+    {
+        display: none;
+    }
  
  </style>
  
@@ -60,7 +64,7 @@
                             <input type="hidden" name="id" id="id" value="{{ $HomeContentSecond->id }}">
 
                             <div class="form-group">
-                                <textarea name="content" id="ckEditorClassic">{{ $HomeContentSecond->content }}</textarea>
+                                <textarea class="textarea_tinyMice @error('text') is-invalid @enderror" name="content">{{ $HomeContentSecond->content }}</textarea>
                                 @error('content')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror 
@@ -90,7 +94,7 @@
                                             <div class="row justify-content-left mt-3 mb-3">
                                                 <div class="col-lg-12 col-md-6 col-xs-12">
                                                     <div class="card mcard" id="image_Second_Content_Section_Data1">
-                                                        <img src="{{ $HomeContentSecond->image_one }}" alt="" srcset="">
+                                                        <img src="{{ asset($HomeContentSecond->image_one) }}" alt="dce-image" srcset="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -117,7 +121,7 @@
                                             <div class="row justify-content-left mt-3 mb-3">
                                                 <div class="col-lg-12 col-md-6 col-xs-12">
                                                     <div class="card mcard" id="image_Second_Content_Section_Data2">
-                                                        <img src="{{ $HomeContentSecond->image_second }}" alt="" srcset="">
+                                                        <img src="{{ asset($HomeContentSecond->image_second) }}" alt="dce-image" srcset="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -144,7 +148,7 @@
                                             <div class="row justify-content-left mt-3 mb-3">
                                                 <div class="col-lg-12 col-md-6 col-xs-12">
                                                     <div class="card mcard" id="image_Second_Content_Section_Data3">
-                                                        <img src="{{ $HomeContentSecond->image_third }}" alt="" srcset="">
+                                                        <img src="{{ asset($HomeContentSecond->image_third) }}" alt="dce-image" srcset="">
                                                     </div>
                                                 </div>
                                             </div>

@@ -11,9 +11,22 @@ use App\Models\OurPhilosophy;
 use App\Models\QuestionAnswer;
 use App\Models\LastAboutBanner;
 use App\Models\OfficeAddress;
+use App\Models\AboutCounter;
 
 class AboutUsController extends Controller
 {
+    public function __construct() 
+    {
+        $this->middleware('role:Contact us Manager|Super Admin', ['only' => [
+            'edit_contact_us', 'contact_us_address'
+        ]]);
+
+        $this->middleware('role:About-us-Manager|Super Admin', ['only' => [
+            'all_about_us_banner', 'update_about_banner', 'who_we_are', 'update_who_we_are','mission_vision','update_mission_vision','our_Philosophy','update_our_philosophy',
+            'counters', 'update_counter', 'asked_question', 'add_question_asnwer', 'delete_question_answer', 'edit_last_about_banner', 'update_last_about_banner'
+        ]]);
+    }
+
     public function singleImage($image,$folder)
     {
         if ($image->isValid()) 
@@ -300,6 +313,58 @@ class AboutUsController extends Controller
         return redirect()->back()->with('message', 'Updated Successfully!');
     }
 
+    public function counters()
+    {
+        $AboutCounter = AboutCounter::first();
+        return view('admin_panel.about_us.counters', compact('AboutCounter'));
+    }
+
+    public function update_counter(Request $request)
+    {
+        $data = array();
+
+        if($request->counter1)
+        {
+            $data['counter1'] = $request->counter1;
+        }
+        if($request->counter1_name)
+        {
+            $data['counter1_name'] = $request->counter1_name;
+        }
+        if($request->counter2)
+        {
+            $data['counter2'] = $request->counter2;
+        }
+        if($request->counter2_name)
+        {
+            $data['counter2_name'] = $request->counter2_name;
+        }
+        if($request->counter3)
+        {
+            $data['counter3'] = $request->counter3;
+        }
+        if($request->counter3_name)
+        {
+            $data['counter3_name'] = $request->counter3_name;
+        }
+        if($request->counter4)
+        {
+            $data['counter4'] = $request->counter4;
+        }
+        if($request->counter4_name)
+        {
+            $data['counter4_name'] = $request->counter4_name;
+        }
+        if($request->counter_Image)
+        {
+            $data['counter_image'] = $this->singleImage($request->counter_Image, "counter_Image");
+        }
+
+        $AboutCounter = AboutCounter::where('id',$request->id)->update($data);
+
+        return redirect()->back()->with('success', 'Updated Successfully!');
+    }
+
     public function asked_question()
     {
         $QuestionAnswer = QuestionAnswer::get();
@@ -372,7 +437,7 @@ class AboutUsController extends Controller
 
         return redirect()->back()->with('success', 'Updated Successfully!');
     }
-
+    
     public function edit_contact_us()
     {
         $OfficeAddress = OfficeAddress::first();
@@ -385,10 +450,11 @@ class AboutUsController extends Controller
             'contact_Us' => 'required|min:30|max:1000',
         ]);
 
-        $OfficeAddress = OfficeAddress::create([
+        $OfficeAddress = OfficeAddress::where('id',$request->id)->update([
             'office_detail' => $request->contact_Us,
         ]);
 
         return redirect()->back()->with('success', 'Update Successfully!');
     }
+
 }

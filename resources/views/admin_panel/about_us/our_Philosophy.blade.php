@@ -200,7 +200,7 @@
                             <div class="row justify-content-left mt-3 mb-3">
                                 <div class="col-lg-12 col-md-6 col-xs-12">
                                     <div class="card mcard" id="philosophy_Image">
-                                        <img src="{{ $OurPhilosophy->image }}" alt="" srcset="">
+                                        <img src="{{ asset($OurPhilosophy->image) }}" alt="dce-image" srcset="">
                                     </div>
                                 </div>
                             </div>

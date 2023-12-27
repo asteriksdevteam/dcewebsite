@@ -119,10 +119,9 @@
                                 <label>Select Page</label>
                                 <select name="page" id="page" class="form-control" required>
                                     <option disabled selected>Select</option>
-                                    <option value="home">Home</option>
-                                    <option value="about-us">About us</option>
-                                    <option value="blog_and_news">Blogs & News</option>
-                                    <option value="contact-us">Contact us</option>
+                                    @foreach($pages_only as $item)
+                                        <option value="{{ $item }}">{{ $item }}</option>
+                                    @endforeach
                                 </select>
 
                                 <div class="invalid-tooltip">
@@ -151,68 +150,6 @@
                             <div class="form-group position-relative error-l-50">
                                 <label>Meta Description</label>
                                 <textarea type="text" class="form-control" rows="4" name="meta_description" id="meta_description" required></textarea>
-                                <div class="invalid-tooltip">
-                                    Meta Description is required!
-                                </div>
-                            </div>
-                            
-                            
-                            <button type="submit" class="btn btn-primary btn-block mb-0 testimonails">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade bd-example-modal-lg-edit" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Edit Tags</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ url('create_meta_tag') }}" method="post" class="needs-validation tooltip-label-right" novalidate>
-                            @csrf
-
-                            <div class="form-group position-relative error-l-50">
-                                <input type="hidden" id="id" name="id">
-                                <label>Select Page</label>
-                                <select name="page" id="edit_page" class="form-control" required>
-                                    <option disabled selected>Select</option>
-                                    <option value="home">Home</option>
-                                    <option value="about-us">About us</option>
-                                    <option value="contact-us">Contact us</option>
-                                </select>
-
-                                <div class="invalid-tooltip">
-                                    Page is required!
-                                </div>
-                            </div>
-
-                            <div class="form-group position-relative error-l-50">
-                                <label>Meta Title</label>
-                                <input type="text" class="form-control" name="meta_title" id="edit_meta_title" required>
-                                <div class="invalid-tooltip">
-                                    Meta Title is required!
-                                </div>
-                            </div>
-
-                            <div class="form-group position-relative error-l-50">
-                                <label>Meta Keyword</label>
-                                <select id="meta_keyword" class="form-control" multiple="multiple" name="meta_keyword[]" required>
-
-                                </select>
-                                <div class="invalid-tooltip">
-                                    Meta Title is required!
-                                </div>
-                            </div>
-
-                            <div class="form-group position-relative error-l-50">
-                                <label>Meta Description</label>
-                                <textarea type="text" class="form-control" rows="4" name="meta_description" id="edit_meta_description" required></textarea>
                                 <div class="invalid-tooltip">
                                     Meta Description is required!
                                 </div>

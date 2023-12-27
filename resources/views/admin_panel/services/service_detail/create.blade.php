@@ -1,4 +1,4 @@
-@extends('admin_panel.layout.app');
+@extends('admin_panel.layout.app')
 @section('content')
 
 <style>
@@ -23,14 +23,18 @@
     }
     .select2
     {
-    width: 100% !important;
-    height: 50px;
+        width: 100% !important;
+        height: 50px;
     }
     .select2-container .select2-selection--multiple
     {
         min-height: 40px !important;
         border: 1px solid #d7d7d7 !important;
         border-radius: 0.1rem !important;
+    }
+    .tox-notifications-container 
+    {
+        display: none;
     }
 </style>
 
@@ -81,7 +85,7 @@
                                 <select name="sub_category" id="sub_category" class="form-control" value="{{ old('sub_category') }}">
                                     <option value="" disabled selected>Select</option>
                                     @foreach($SubCategory as $item)
-                                        <option value="{{ $item->id }}">{{ $item->sub_category_name }}</option>
+                                        <option value="{{ $item->id }}" {{ old('sub_category') == $item->id ? 'selected' : '' }} >{{ $item->sub_category_name }}</option>
                                     @endforeach
                                 </select>
 
@@ -91,12 +95,12 @@
                             </div>
 
                             <br>
-                            <h2>Add Meta Tags</h2>
+                                <h2>Add Meta Tags</h2>
                             <hr>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Meta Title</label>
-                                <input type="text" name="meta_title" class="form-control" id="meta_title" required>
+                                <input type="text" name="meta_title" class="form-control" id="meta_title" required value="{{ old('meta_title') }}">
                             </div>
 
                             <div class="form-group">
@@ -106,7 +110,20 @@
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Meta Description</label>
-                                <textarea type="text" name="meta_description" rows="5" class="form-control" id="meta_description" required></textarea>
+                                <textarea type="text" name="meta_description" rows="5" class="form-control" id="meta_description" required>{{ old('meta_description') }}</textarea>
+                            </div>
+                            
+                            <br>
+                                <h2>Add Second Banner Details</h2>
+                            <hr>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Second Banner</label>
+                                
+                                <textarea name="second_banner" class="textarea_tinyMice @error('second_banner') is-invalid @enderror" rows="5">{{ old('second_banner') }}</textarea>
+                                @error('second_banner')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror                                
                             </div>
 
                             <br>
@@ -126,12 +143,32 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Banner Content</label>
 
-                                <textarea name="banner_content" id="banner_content" class="form-control" rows="5" value="{{ old('banner_content') }}"></textarea>
+                                <textarea name="banner_content" id="banner_content" class="form-control" rows="5">{{ old('banner_content') }}</textarea>
 
                                 @error('banner_content')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror                                
                             </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Banner Image</label>
+
+                                <input type="file" name="first_banner_image" id="first_banner_image" class="form-control" value="{{ old('first_banner_image') }}">
+
+                                @error('first_banner_image')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror                                
+                            </div>
+
+                            <section>
+                                <div class="row justify-content-start">
+                                    <div class="col-lg-2 col-md-3 col-xs-12">
+                                        <div class="card mcard first_banner_image_service_detail_display" id="first_banner_image_service_detail_display">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
 
                             <br>
                             <div class="row">
@@ -144,13 +181,12 @@
                             </div>
                             <hr>
 
-                            <div class="col-lg-12 col-md-12 mb-4">
-                                <h5 class="card-title">Bordered Table</h5>
-    
+                            <div class="col-lg-12 col-md-12 mb-4">    
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
+                                            <th scope="col">Image</th>
                                             <th scope="col">Process Heading</th>
                                             <th scope="col">Process Content</th>
                                             <th scope="col">Action</th>
@@ -161,6 +197,13 @@
                                             <th scope="row">1</th>
                                             <input type="hidden" class="row_number" name="row_number" id="row_number" value="1">
                                             <td>
+                                                <input type="file" name="process_image[]" id="process_image" class="form-control" value="">
+
+                                                @error('process_image')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                            <td>
                                                 <input type="text" name="process_heading[]" id="process_heading" class="form-control" value="">
 
                                                 @error('process_heading')
@@ -168,7 +211,7 @@
                                                 @enderror 
                                             </td>
                                             <td>
-                                                <textarea name="process_content[]" id="process_content" class="form-control" rows="5" value=""></textarea>
+                                                <textarea name="process_content[]" id="process_content" class="form-control" rows="5"></textarea>
 
                                                 @error('process_content')
                                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -180,13 +223,78 @@
                                 </table>
                             </div>
 
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Process Paragraph</label>
+
+                                <textarea name="process_paragraph" id="process_paragraph" class="form-control" rows="5">{{ old('process_paragraph') }}</textarea>
+
+                                @error('process_paragraph')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror                                
+                            </div>
+
                             <br>
-                            <h2>Add Content Details</h2>
+                            <h2>Info Banner</h2>
+                            <hr>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Info Heading</label>
+
+                                <input type="text" name="info_banner_heading" id="info_banner_heading" class="form-control" value="{{ old('info_banner_heading') }}">
+
+                                @error('info_banner_heading')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror                                
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Info Content</label>
+
+                                <textarea name="info_banner_content" id="info_banner_content" class="form-control" rows="5">{{ old('info_banner_content') }}</textarea>
+
+                                @error('info_banner_content')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror                                
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Info Link</label>
+
+                                <input type="text" name="info_banner_button_link" id="info_banner_button_link" class="form-control" rows="5" value="{{ old('info_banner_button_link') }}">
+
+                                @error('info_banner_button_link')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror                                
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Info Image</label>
+
+                                <input type="file" name="info_banner_image" id="info_banner_image" class="form-control" value="{{ old('info_banner_image') }}">
+
+                                @error('info_banner_image')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror                                
+                            </div>
+
+                            <section>
+                                <div class="row justify-content-start">
+                                    <div class="col-lg-2 col-md-3 col-xs-12">
+                                        <div class="card mcard info_banner_image_service_detail_display" id="info_banner_image_service_detail_display">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <br>
+                                <h2>Add Content Details</h2>
                             <hr>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">About Content</label>
-                                <textarea name="about_content" id="ckEditorClassic" class="form-control" rows="5" value="{{ old('about_content') }}"></textarea>
+                                
+                                <textarea name="about_content" class="textarea_tinyMice @error('about_content') is-invalid @enderror" rows="5">{{ old('about_content') }}</textarea>
                                 @error('about_content')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror                                
@@ -212,7 +320,234 @@
                                 </div>
                             </section>
 
-                            <button type="submit" class="btn btn-primary mb-0">Update</button>
+                            <br>
+                                <h2>Add Testimonial 2</h2>
+                            <hr>
+
+                            <div class="col-lg-12 col-md-12 mb-4">    
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Heading</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Designation</th>
+                                            <th scope="col">Image</th>
+                                            <th scope="col">Content</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <input type="hidden" class="row_number" name="row_number" id="row_number" value="1">
+                                            <td>
+                                                <input type="text" name="testimonial_heading_1" id="testimonial_heading_1" class="form-control" value="{{ old('testimonial_heading_1') }}">
+
+                                                @error('testimonial_heading_1')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                            <td>
+                                                <input type="text" name="testimonial_name_1" id="testimonial_name_1" class="form-control" value="{{ old('testimonial_name_1') }}">
+
+                                                @error('testimonial_name_1')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                            <td>
+                                                <input type="text" name="testimonial_designation_1" id="testimonial_designation_1" class="form-control" value="{{ old('testimonial_designation_1') }}">
+
+                                                @error('testimonial_designation_1')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                            <td>
+                                                <input type="file" name="testimonial_image_1" id="testimonial_image_1" class="form-control" value="{{ old('testimonial_image_1') }}">
+
+                                                @error('testimonial_image_1')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+
+                                                <br>
+
+                                                <section>
+                                                    <div class="container">
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-lg-3 col-md-6 col-xs-12">
+                                                                <div class="card mcard services_testimonial_image_1" id="services_testimonial_image_1">
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </td>
+                                            <td>
+                                                <textarea name="testimonial_content_1" id="testimonial_content_1" class="form-control" rows="5">{{ old('testimonial_content_1') }}</textarea>
+
+                                                @error('testimonial_content_1')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <input type="hidden" class="row_number" name="row_number" id="row_number" value="1">
+                                            <td>
+                                                <input type="text" name="testimonial_heading_2" id="testimonial_heading_2" class="form-control" value="{{ old('testimonial_heading_2') }}">
+
+                                                @error('testimonial_heading_2')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                            <td>
+                                                <input type="text" name="testimonial_name_2" id="testimonial_name_2" class="form-control" value="{{ old('testimonial_name_2') }}">
+
+                                                @error('testimonial_name_2')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                            <td>
+                                                <input type="text" name="testimonial_designation_2" id="testimonial_designation_2" class="form-control" value="{{ old('testimonial_designation_2') }}">
+
+                                                @error('testimonial_designation_2')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                            <td>
+                                                <input type="file" name="testimonial_image_2" id="testimonial_image_2" class="form-control" value="{{ old('testimonial_image_2') }}">
+
+                                                @error('testimonial_image_2')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                                <br>
+                                                <section>
+                                                    <div class="container">
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-lg-3 col-md-6 col-xs-12">
+                                                                <div class="card mcard services_testimonial_image_2" id="services_testimonial_image_2">
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </td>
+                                            <td>
+                                                <textarea name="testimonial_content_2" id="testimonial_content_2" class="form-control" rows="5">{{ old('testimonial_content_2') }}</textarea>
+
+                                                @error('testimonial_content_2')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <input type="hidden" class="row_number" name="row_number" id="row_number" value="1">
+                                            <td>
+                                                <input type="text" name="testimonial_heading_3" id="testimonial_heading_3" class="form-control" value="{{ old('testimonial_heading_3') }}">
+
+                                                @error('testimonial_heading_3')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                            <td>
+                                                <input type="text" name="testimonial_name_3" id="testimonial_name_3" class="form-control" value="{{ old('testimonial_name_3') }}">
+
+                                                @error('testimonial_name_3')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                            <td>
+                                                <input type="text" name="testimonial_designation_3" id="testimonial_designation_3" class="form-control" value="{{ old('testimonial_designation_3') }}">
+
+                                                @error('testimonial_designation_3')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                            <td>
+                                                <input type="file" name="testimonial_image_3" id="testimonial_image_3" class="form-control" value="">
+
+                                                @error('testimonial_image_3')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                                <br>
+                                                <section>
+                                                    <div class="container">
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-lg-3 col-md-6 col-xs-12">
+                                                                <div class="card mcard services_testimonial_image_3" id="services_testimonial_image_3">
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </td>
+                                            <td>
+                                                <textarea name="testimonial_content_3" id="testimonial_content_3" class="form-control" rows="5" value="">{{ old('testimonial_content_3') }}</textarea>
+
+                                                @error('testimonial_content_3')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <input type="hidden" class="row_number" name="row_number" id="row_number" value="1">
+                                            <td>
+                                                <input type="text" name="testimonial_heading_4" id="testimonial_heading_4" class="form-control" value="{{ old('testimonial_heading_4') }}">
+
+                                                @error('testimonial_heading_4')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                            <td>
+                                                <input type="text" name="testimonial_name_4" id="testimonial_name_4" class="form-control" value="{{ old('testimonial_name_4') }}">
+
+                                                @error('testimonial_name_4')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                            <td>
+                                                <input type="text" name="testimonial_designation_4" id="testimonial_designation_4" class="form-control" value="{{ old('testimonial_designation_4') }}">
+
+                                                @error('testimonial_designation_4')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                            <td>
+                                                <input type="file" name="testimonial_image_4" id="testimonial_image_4" class="form-control" value="{{ old('testimonial_image_4') }}">
+
+                                                @error('testimonial_image_4')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                                <br>
+                                                <section>
+                                                    <div class="container">
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-lg-3 col-md-6 col-xs-12">
+                                                                <div class="card mcard services_testimonial_image_4" id="services_testimonial_image_4">
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </td>
+                                            <td>
+                                                <textarea name="testimonial_content_4" id="testimonial_content_4" class="form-control" rows="5" value="">{{ old('testimonial_content_4') }}</textarea>
+
+                                                @error('testimonial_content_4')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror 
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary mb-0">Create</button>
                         </form>
                     </div>
                 </div>

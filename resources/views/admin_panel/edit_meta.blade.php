@@ -79,6 +79,8 @@
                                     <option value="about-us" {{ $MetaTag->page == "about-us" ? "selected" : "" }}>About us</option>
                                     <option value="blog_and_news" {{ $MetaTag->page == "blog_and_news" ? "selected" : "" }}>Blogs & News</option>
                                     <option value="contact-us" {{ $MetaTag->page == "contact-us" ? "selected" : "" }}>Contact us</option>
+                                    <option value="blog_and_news" {{ $MetaTag->page == "terms_and_conditions" ? "selected" : "" }}>Terms and condition</option>
+                                    <option value="contact-us" {{ $MetaTag->page == "privacy_policy" ? "selected" : "" }}>Privacy and policy</option>
                                 </select>
 
                                 <div class="invalid-tooltip">

@@ -1,4 +1,4 @@
-@extends('admin_panel.layout.app');
+@extends('admin_panel.layout.app')
 @section('content')
 
 <style>
@@ -24,6 +24,10 @@
      {
          font-size: 20px;
      }
+     .tox-notifications-container 
+    {
+        display: none;
+    }
  
  </style>
  
@@ -57,13 +61,15 @@
                         <form method="post" action="{{ url('update_home_content_one') }}" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" id="id" value="{{ $HomeContentOne->id }}">
-
+                            
                             <div class="form-group">
-                                <textarea name="content" id="ckEditorClassic">{{ $HomeContentOne->content }}</textarea>
+                                <label for="exampleInputEmail1">Text</label>
+                                <textarea name="content" class="textarea_tinyMice @error('text') is-invalid @enderror">{{ $HomeContentOne->content }}
+                                </textarea>
 
                                 @error('content')
                                     <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror 
+                                @enderror                                
                             </div>
 
                             <br>
@@ -79,7 +85,7 @@
                                 <div class="row justify-content-left mt-3 mb-3">
                                     <div class="col-lg-3 col-md-6 col-xs-12">
                                         <div class="card mcard" id="HomeContentOne">
-                                            <img src="{{ $HomeContentOne->image }}" alt="" srcset="">
+                                            <img src="{{ asset($HomeContentOne->image) }}" alt="dce-image" srcset="">
                                         </div>
                                     </div>
                                 </div>

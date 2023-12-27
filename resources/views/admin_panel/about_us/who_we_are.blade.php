@@ -1,4 +1,4 @@
-@extends('admin_panel.layout.app');
+@extends('admin_panel.layout.app')
 @section('content')
 
 <style>
@@ -24,7 +24,10 @@
     {
         font-size: 20px;
     }
-
+    .tox-notifications-container 
+    {
+        display: none;
+    }
 </style>
 
 <main>
@@ -62,8 +65,8 @@
                             <input type="hidden" name="id" id="id" value="{{ $WhoWeAre->id }}">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">About Content</label>
-                                <textarea name="about_content" class=" @error('about_content') is-invalid @enderror" id="ckEditorClassic">{{ $WhoWeAre->about_content }}</textarea>
-
+                                <textarea class="textarea_tinyMice @error('about_content') is-invalid @enderror" name="about_content">{{ $WhoWeAre->about_content }}</textarea>
+                                
                                 @error('about_content')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror 
@@ -84,7 +87,7 @@
                             <div class="row justify-content-left mt-3 mb-3">
                                 <div class="col-lg-12 col-md-6 col-xs-12">
                                     <div class="card mcard" id="who_we_are_Image">
-                                        <img src="{{ $WhoWeAre->image }}" alt="" srcset="">
+                                        <img src="{{ asset($WhoWeAre->image) }}" alt="dce-image" srcset="">
                                     </div>
                                 </div>
                             </div>

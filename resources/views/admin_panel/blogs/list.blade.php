@@ -61,7 +61,7 @@
                     <div class="card-body">
                         <h5 class="mb-4">All Blogs</h5>
                         <div style="display: flex; justify-content: end; margin:20px 44px 0 0">
-                            <a href="{{ url('create_blog') }}" class="btn btn-primary cbtn">Create Services</a>
+                            <a href="{{ url('create_blog') }}" class="btn btn-primary cbtn">Create Blogs</a>
                         </div>
                         <hr>
                         <table class="data-table data-table-feature-for-blog">

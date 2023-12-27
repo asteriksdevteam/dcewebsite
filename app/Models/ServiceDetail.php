@@ -21,8 +21,15 @@ class ServiceDetail extends Model
         "sub_category",
         "banner_heading",
         "banner_content",
+        "first_banner_image",
+        "process_content",
+        "info_banner_heading",
+        "info_banner_content",
+        "info_banner_image",
+        "info_banner_button_link",
         "about_content",
         "banner_image_service_detail",
+        "second_banner",
     ];
 
     public function SubCategory(): HasOne
@@ -32,5 +39,9 @@ class ServiceDetail extends Model
     public function ServiceDetailProcess(): HasMany
     {
         return $this->hasMany(ServiceDetailProcess::class,'service_detail_id','id');
+    }
+    public function ServiceDetailTestimonails(): HasOne
+    {
+        return $this->HasOne(ServiceTestimonial::class,'service_id','id');
     }
 }

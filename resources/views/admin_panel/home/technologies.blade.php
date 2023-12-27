@@ -91,7 +91,7 @@
                                         <div class="row justify-content-left mt-3 mb-3">
                                             <div class="col-lg-12 col-md-6 col-xs-12">
                                                 <div class="card mcard" id="imageContainer1">
-                                                    <img src="{{ $HomeTechnologies->image_1 }}" alt="" srcset="">
+                                                    <img src="{{ asset($HomeTechnologies->image_1) }}" alt="dce-image" srcset="">
                                                 </div>
                                             </div>
                                         </div>
@@ -111,7 +111,7 @@
                                         <div class="row justify-content-left mt-3 mb-3">
                                             <div class="col-lg-12 col-md-6 col-xs-12">
                                                 <div class="card mcard" id="imageContainer2">
-                                                    <img src="{{ $HomeTechnologies->image_2 }}" alt="" srcset="">
+                                                    <img src="{{ asset($HomeTechnologies->image_2) }}" alt="dce-image" srcset="">
                                                 </div>
                                             </div>
                                         </div>
@@ -131,7 +131,7 @@
                                         <div class="row justify-content-left mt-3 mb-3">
                                             <div class="col-lg-12 col-md-6 col-xs-12">
                                                 <div class="card mcard" id="imageContainer3">
-                                                    <img src="{{ $HomeTechnologies->image_3 }}" alt="" srcset="">
+                                                    <img src="{{ asset($HomeTechnologies->image_3) }}" alt="dce-image" srcset="">
                                                 </div>
                                             </div>
                                         </div>
@@ -153,7 +153,7 @@
                                         <div class="row justify-content-left mt-3 mb-3">
                                             <div class="col-lg-12 col-md-6 col-xs-12">
                                                 <div class="card mcard" id="imageContainer4">
-                                                    <img src="{{ $HomeTechnologies->image_4 }}" alt="" srcset="">
+                                                    <img src="{{ asset($HomeTechnologies->image_4) }}" alt="dce-image" srcset="">
                                                 </div>
                                             </div>
                                         </div>
@@ -173,7 +173,7 @@
                                         <div class="row justify-content-left mt-3 mb-3">
                                             <div class="col-lg-12 col-md-6 col-xs-12">
                                                 <div class="card mcard" id="imageContainer5">
-                                                    <img src="{{ $HomeTechnologies->image_5 }}" alt="" srcset="">
+                                                    <img src="{{ asset($HomeTechnologies->image_5) }}" alt="dce-image" srcset="">
                                                 </div>
                                             </div>
                                         </div>
@@ -193,7 +193,7 @@
                                         <div class="row justify-content-left mt-3 mb-3">
                                             <div class="col-lg-12 col-md-6 col-xs-12">
                                                 <div class="card mcard" id="imageContainer6">
-                                                    <img src="{{ $HomeTechnologies->image_6 }}" alt="" srcset="">
+                                                    <img src="{{ asset($HomeTechnologies->image_6) }}" alt="dce-image" srcset="">
                                                 </div>
                                             </div>
                                         </div>

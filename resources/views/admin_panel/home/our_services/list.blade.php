@@ -1,4 +1,4 @@
-@extends('admin_panel.layout.app');
+@extends('admin_panel.layout.app')
 @section('content')
 
 <style>
@@ -21,6 +21,14 @@
     {
         max-width: 100px !important;
         max-height: 50px !important;
+    }
+    .service-img
+    {
+        width: 100px;
+    }
+    .tox-notifications-container 
+    {
+        display: none;
     }
 </style>
 
@@ -67,8 +75,8 @@
                         <table class="data-table data-table-feature-for-services">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Description</th>
+                                    <th style="width:250px">Name</th>
+                                    <th style="width:313px">Description</th>
                                     <th class="cth">Images</th>
                                     <th>Actions</th>
                                 </tr>
@@ -78,13 +86,13 @@
                                     <tr>
                                         <td>{{ $item->name }}</td>
                                         <td>{!! $item->description !!}</td>
-                                        <td> <img src="{{ $item->image }}" alt="" srcset=""></td>
+                                        <td> <img src="{{ asset($item->image) }}" class="service-img" alt="dce-image" srcset=""></td>
                                         <td>
                                             <a href="{{ url('delete_our_services/'.$item->id) }}" class="btn btn-danger btn-sm">Delete</a>
                                             
                                             <button type="button" class="btn btn-warning btn-sm edit_Services" 
                                             data-id="{{$item->id}}" data-name="{{$item->name}}" data-description="{{$item->description}}" data-image="{{$item->image}}" 
-                                            data-toggle="modal" data-target=".bd-example-modal-lg">Edit</button>  
+                                            data-toggle="modal" data-target=".bd-example-modal-lg-edit">Edit</button>  
                                         </td>
 
                                     </tr>
@@ -121,7 +129,9 @@
 
                                 <div class="form-group position-relative error-l-50">
                                     <label>Description</label>
-                                    <textarea type="text" name="description" class="form-control" id="ckEditorClassic" rows="7" required></textarea>
+                                    <textarea class="textarea_tinyMice @error('text') is-invalid @enderror" name="description" rows="7" required>
+                                    </textarea>
+                                    
                                     <div class="invalid-tooltip">
                                         Description is required!
                                     </div>
@@ -140,7 +150,7 @@
                                     <div class="row justify-content-left mt-3 mb-3">
                                         <div class="col-lg-12 col-md-6 col-xs-12">
                                             <div class="card mcard" id="images_show">
-                                                <img src="" alt="" srcset="">
+                                                <img src="" alt="dce-image" srcset="">
                                             </div>
                                         </div>
                                     </div>
@@ -154,7 +164,7 @@
             </div>
         </div>
 
-        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade bd-example-modal-lg-edit" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -168,7 +178,8 @@
                             @csrf
                             <div class="form-group position-relative error-l-50">
                                 <label>Name</label>
-                                <input type="text" name="service_name" id="service_name" class="form-control service_name" placeholder="" required>
+                                <input type="hidden" name="edit_service_id" id="edit_service_id" class="form-control edit_service_id" required>
+                                <input type="text" name="service_name" id="edit_service_name" class="form-control edit_service_name" required>
                                 <div class="invalid-tooltip">
                                     Name is required!
                                 </div>
@@ -176,7 +187,7 @@
 
                             <div class="form-group position-relative error-l-50">
                                 <label>Description</label>
-                                <textarea type="text" name="service_description" class="form-control service_description" id="ckEditorClassic" rows="7" required></textarea>
+                                <textarea type="text" name="service_description" id="edit_service_description"  class="textarea_tinyMice form-control edit_service_description" required></textarea>
                                 <div class="invalid-tooltip">
                                     Description is required!
                                 </div>
@@ -185,7 +196,7 @@
 
                             <div class="form-group position-relative error-l-50">
                                 <label>Images</label>
-                                <input type="file" placeholder="" name="images" id="images" class="form-control" required>
+                                <input type="file" placeholder="" name="images" id="edit_images" class="form-control">
                                 <div class="invalid-tooltip">
                                     Images is required!
                                 </div>
@@ -194,8 +205,8 @@
                             <section>
                                 <div class="row justify-content-left mt-3 mb-3">
                                     <div class="col-lg-12 col-md-6 col-xs-12">
-                                        <div class="card mcard" id="images_show">
-                                            <img src="" alt="" srcset="">
+                                        <div class="card mcard" id="edit_images_show">
+                                            <img src="" alt="dce-image" srcset="" id="edit_image_display" width="10%">
                                         </div>
                                     </div>
                                 </div>

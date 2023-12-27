@@ -55,9 +55,10 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost/'),
+    'url' => env('APP_URL', 'https://www.digicontentexperts.com/public'),
 
-    'asset_url' => env('ASSET_URL', 'http://localhost/public'),
+    'asset_url' => env('ASSET_URL', 'https://www.digicontentexperts.com/public'),
+
 
     /*
     |--------------------------------------------------------------------------
@@ -169,6 +170,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Stevebauman\Location\LocationServiceProvider::class,
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -184,6 +187,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Location' => 'Stevebauman\Location\Facades\Location',
+        'Share' => Jorenvh\Share\ShareFacade::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 

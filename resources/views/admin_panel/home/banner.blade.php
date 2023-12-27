@@ -95,7 +95,7 @@
                                     @foreach($HomeBannerImages as $item)
                                         <div class="col-lg-3 col-md-6 col-xs-12">
                                             <div class="card mcard">
-                                                <img src="{{ $item->images }}" alt="">
+                                                <img src="{{ asset($item->images) }}" alt="dce-image">
                                                 <a href="javascript:void(0);" class="getHomePageSliderIdLink">
                                                     <input type="hidden" value="{{ $item->id }}" name="getHomePageSliderId" id="getHomePageSliderId" class="getHomePageSliderId">
                                                     <div class="garbage">

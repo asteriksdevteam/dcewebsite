@@ -1,6 +1,10 @@
 html {
   width: 100%;
 }
+.theme-colors .theme-button{
+  display: none !important;
+}
+
 
 body {
   overflow-x: hidden !important;

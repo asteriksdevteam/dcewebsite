@@ -81,7 +81,7 @@
                                             <div class="row justify-content-left mt-3 mb-3">
                                                 <div class="col-lg-12 col-md-6 col-xs-12">
                                                     <div class="card mcard" id="image_third_Content_Section_Data1">
-                                                        <img src="{{ $HomeContentThird->image1 }}" alt="" srcset="">
+                                                        <img src="{{ asset($HomeContentThird->image1) }}" alt="dce-image" srcset="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -109,7 +109,7 @@
                                             <div class="row justify-content-left mt-3 mb-3">
                                                 <div class="col-lg-12 col-md-6 col-xs-12">
                                                     <div class="card mcard" id="image_third_Content_Section_Data2">
-                                                        <img src="{{ $HomeContentThird->image2 }}" alt="" srcset="">
+                                                        <img src="{{ asset($HomeContentThird->image2) }}" alt="dce-image" srcset="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -141,7 +141,7 @@
                                             <div class="row justify-content-left mt-3 mb-3">
                                                 <div class="col-lg-12 col-md-6 col-xs-12">
                                                     <div class="card mcard" id="image_third_Content_Section_Data3">
-                                                        <img src="{{ $HomeContentThird->image3 }}" alt="" srcset="">
+                                                        <img src="{{ asset($HomeContentThird->image3) }}" alt="dce-image" srcset="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -168,7 +168,7 @@
                                             <div class="row justify-content-left mt-3 mb-3">
                                                 <div class="col-lg-12 col-md-6 col-xs-12">
                                                     <div class="card mcard" id="image_third_Content_Section_Data4">
-                                                        <img src="{{ $HomeContentThird->image4 }}" alt="" srcset="">
+                                                        <img src="{{ asset($HomeContentThird->image4) }}" alt="dce-image" srcset="">
                                                     </div>
                                                 </div>
                                             </div>

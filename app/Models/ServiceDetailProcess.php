@@ -14,6 +14,7 @@ class ServiceDetailProcess extends Model
     protected $table = "service_detail_process";
 
     protected $fillable = [
+        "image",
         "service_detail_id",
         "heading",
         "content",

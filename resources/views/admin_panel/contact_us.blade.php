@@ -1,4 +1,4 @@
-@extends('admin_panel.layout.app');
+@extends('admin_panel.layout.app')
 @section('content')
 
 <style>
@@ -23,6 +23,10 @@
     .garbage i
     {
         font-size: 20px;
+    }
+    .tox-notifications-container 
+    {
+        display: none;
     }
 
 </style>
@@ -61,7 +65,8 @@
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Address</label>
-                                <textarea name="contact_Us" class="@error('contact_Us') is-invalid @enderror" id="ckEditorClassic">{{$OfficeAddress->office_detail}}</textarea>
+                                <input type="hidden" value="{{ $OfficeAddress->id }}" id="id" name="id">
+                                <textarea name="contact_Us" class="textarea_tinyMice @error('contact_Us') is-invalid @enderror">{{$OfficeAddress->office_detail}}</textarea>
 
                                 @error('contact_Us')
                                     <div class="alert alert-danger">{{ $message }}</div>

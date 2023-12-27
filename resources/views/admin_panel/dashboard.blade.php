@@ -1,240 +1,56 @@
-@extends('admin_panel.layout.app');
+@extends('admin_panel.layout.app')
 @section('content')
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
 
-<main>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <h1><b>Welcome on DCE</b></h1>
-                <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
-                    <ol class="breadcrumb pt-0">
-                        <li class="breadcrumb-item">
-                            <a href="#">Dashboard</a>
-                        </li>
-                    </ol>
-                </nav>
-                <div class="separator mb-5"></div>
-            </div>
-        </div>
+    .welcome-message {
+        text-align: center;
+        font-size: 24px;
+        color: #333;
+        animation: fadeInUp 1.5s ease-in-out;
+    }
 
-
-        <div class="row">
-            <div class="col-md-12 col-lg-6 col-xl-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Product Categories</h5>
-                        <div class="dashboard-donut-chart chart">
-                            <canvas id="categoryChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-12 col-lg-6 col-xl-4 mb-4">
-                <div class="card dashboard-progress">
-                    <div class="position-absolute card-top-buttons">
-                        <button class="btn btn-header-light icon-button">
-                            <i class="simple-icon-refresh"></i>
-                        </button>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Profile Status</h5>
-                        <div class="mb-4">
-                            <p class="mb-2">Basic Information
-                                <span class="float-right text-muted">12/18</span>
-                            </p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-                        </div>
-
-                        <div class="mb-4">
-                            <p class="mb-2">Portfolio
-                                <span class="float-right text-muted">1/8</span>
-                            </p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="15" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-                        </div>
-
-                        <div class="mb-4">
-                            <p class="mb-2">Billing Details
-                                <span class="float-right text-muted">2/6</span>
-                            </p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-                        </div>
-
-                        <div class="mb-4">
-                            <p class="mb-2">Interests
-                                <span class="float-right text-muted">0/8</span>
-                            </p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-                        </div>
-
-                        <div class="mb-4">
-                            <p class="mb-2">Legal Documents
-                                <span class="float-right text-muted">1/2</span>
-                            </p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 col-lg-12 col-xl-4">
-                <div class="row">
-                    <div class="col-6 mb-4">
-                        <div class="card dashboard-small-chart-analytics">
-                            <div class="card-body">
-                                <p class="lead color-theme-1 mb-1 value"></p>
-                                <p class="mb-0 label text-small"></p>
-                                <div class="chart">
-                                    <canvas id="smallChart1"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 mb-4">
-                        <div class="card dashboard-small-chart-analytics">
-                            <div class="card-body">
-                                <p class="lead color-theme-1 mb-1 value"></p>
-                                <p class="mb-0 label text-small"></p>
-                                <div class="chart">
-                                    <canvas id="smallChart2"></canvas>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-6 mb-4">
-                        <div class="card dashboard-small-chart-analytics">
-                            <div class="card-body">
-                                <p class="lead color-theme-1 mb-1 value"></p>
-                                <p class="mb-0 label text-small"></p>
-                                <div class="chart">
-                                    <canvas id="smallChart3"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 mb-4">
-                        <div class="card dashboard-small-chart-analytics">
-                            <div class="card-body">
-                                <p class="lead color-theme-1 mb-1 value"></p>
-                                <p class="mb-0 label text-small"></p>
-                                <div class="chart">
-                                    <canvas id="smallChart4"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="toolbar" id="kt_toolbar">
+        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
 
         </div>
-
-        <div class="row sortable">
-            <div class="col-xl-3 col-lg-6 mb-4">
-                <div class="card">
-                    <div class="card-header p-0 position-relative">
-                        <div class="position-absolute handle card-icon">
-                            <i class="simple-icon-shuffle"></i>
-                        </div>
-                    </div>
-                    <div class="card-body d-flex justify-content-between align-items-center">
-                        <h6 class="mb-0">Profile Status</h6>
-                        <div role="progressbar" class="progress-bar-circle position-relative" data-color="#922c88"
-                            data-trailColor="#d7d7d7" aria-valuemax="100" aria-valuenow="40"
-                            data-show-percent="true">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 mb-4">
-                <div class="card">
-                    <div class="card-header p-0 position-relative">
-                        <div class="position-absolute handle card-icon">
-                            <i class="simple-icon-shuffle"></i>
-                        </div>
-                    </div>
-                    <div class="card-body d-flex justify-content-between align-items-center">
-                        <h6 class="mb-0">Work Progress</h6>
-                        <div role="progressbar" class="progress-bar-circle position-relative" data-color="#922c88"
-                            data-trailColor="#d7d7d7" aria-valuemax="100" aria-valuenow="64"
-                            data-show-percent="true">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 mb-4">
-                <div class="card">
-                    <div class="card-header p-0 position-relative">
-                        <div class="position-absolute handle card-icon">
-                            <i class="simple-icon-shuffle"></i>
-                        </div>
-                    </div>
-                    <div class="card-body d-flex justify-content-between align-items-center">
-                        <h6 class="mb-0">Tasks Completed</h6>
-                        <div role="progressbar" class="progress-bar-circle position-relative" data-color="#922c88"
-                            data-trailColor="#d7d7d7" aria-valuemax="100" aria-valuenow="75"
-                            data-show-percent="true">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 mb-4">
-                <div class="card">
-                    <div class="card-header p-0 position-relative">
-                        <div class="position-absolute handle card-icon">
-                            <i class="simple-icon-shuffle"></i>
-                        </div>
-                    </div>
-                    <div class="card-body d-flex justify-content-between align-items-center">
-                        <h6 class="mb-0">Payments Done</h6>
-                        <div role="progressbar" class="progress-bar-circle position-relative" data-color="#922c88"
-                            data-trailColor="#d7d7d7" aria-valuemax="100" aria-valuenow="32"
-                            data-show-percent="true">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-6 col-12 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Order - Stock</h5>
-                        <div class="chart-container chart">
-                            <canvas id="radarChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-12 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Categories</h5>
-                        <div class="chart-container chart">
-                            <canvas id="polarChart"></canvas>
+    </div>
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <div id="kt_content_container" class="container-xxl">
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="card-header border-0 pt-5">
+                        <div class="welcome-message">
+                            <p class="fw-bolder">Enjoy your stay and have a great day!</p>
+                            <h3 class="card-title align-items-start flex-column">Welcome to Mini CRM Dashboard <span class="fw-bolder" style="color: #FF6145">{{ Auth::user()->name }}</span></h3>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</main>
+</div>
+
 
 @endsection
